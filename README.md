@@ -1,4 +1,4 @@
-# Fabric Example Mod
+# Chronos Carpet Addons
 
 ## Setup
 
