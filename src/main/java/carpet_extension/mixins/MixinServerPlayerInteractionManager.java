@@ -79,7 +79,6 @@ public class MixinServerPlayerInteractionManager {
                     if(ChronosSettings.netheritePickaxeInstantMineDeepslate) {
                         if (EnchantmentHelper.getEfficiency(this.player) == 5 && (StatusEffectUtil.hasHaste(this.player) ? StatusEffectUtil.getHasteAmplifier(this.player) : 0) >= 1 && this.player.getStackInHand(Hand.MAIN_HAND).getItem() == Items.NETHERITE_PICKAXE && blockState.getBlock() == Blocks.DEEPSLATE){
                             h = 1.0F;
-                            System.out.println("insta "+StatusEffectUtil.hasHaste(this.player) );
                         }
                     }
                 }
