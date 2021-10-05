@@ -1,6 +1,6 @@
 package carpet_extension.mixins;
 
-import carpet_extension.ExampleExtension;
+import carpet_extension.ChronosExtension;
 import net.minecraft.util.crash.CrashReport;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,6 +17,6 @@ public class CrashReport_noopMixin
     @Inject(method = "initCrashReport", at = @At("HEAD"))
     private static void gameStarted(CallbackInfo ci)
     {
-        ExampleExtension.noop();
+        ChronosExtension.noop();
     }
 }

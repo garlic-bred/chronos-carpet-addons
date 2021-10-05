@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "carpet-extension",
+  "id": "chronos-carpet-addons",
   "version": "1.4.6",
 
-  "name": "Example Carpet Extension Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Chronos-Carpet-Addons",
+  "description": "Carpet additions for chronos server",
   "authors": [
     "Me!"
   ],
@@ -19,6 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
+      "carpet_extension.ChronosExtension"
     ]
   },
   "mixins": [
@@ -26,8 +27,8 @@
   ],
 
   "depends": {
-    "minecraft": "1.16.x",
-    "fabricloader": ">=0.4.0",
+    "minecraft": "1.17.x",
+    "fabricloader": ">=0.11.6",
     "carpet": "*"
   },
   "suggests": {
