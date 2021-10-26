@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "MixinServerPlayerInteractionManager",
-    "CrashReport_noopMixin"
+    "CrashReport_noopMixin",
+    "MixinClientPlayerInteractionManager"
   ],
   "client": [
   ],

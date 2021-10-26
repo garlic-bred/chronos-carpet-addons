@@ -1,20 +1,24 @@
 package carpet_extension;
 
+import ca.weblite.objc.Client;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
-import carpet.CarpetSettings;
+import carpet.network.CarpetClient;
 import carpet.settings.SettingsManager;
-import carpet.utils.Messenger;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import io.netty.buffer.Unpooled;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.network.ClientConnection;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-import java.util.logging.Logger;
-
 public class ChronosExtension implements CarpetExtension, ModInitializer {
+    public static final int SETTING = 69420;
     public static void noop() { }
     static
     {

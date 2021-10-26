@@ -1,6 +1,7 @@
 package carpet_extension.mixins;
 
 import carpet_extension.ChronosExtension;
+import carpet_extension.ChronosSettings;
 import net.minecraft.util.crash.CrashReport;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
