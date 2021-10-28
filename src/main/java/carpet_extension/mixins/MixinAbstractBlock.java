@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractBlock.class)
 public class MixinAbstractBlock {
-    @Inject(at = @At("HEAD"), cancellable = true, method = "calcBlockBreakingDelta(Lnet/minecraft/block/BlockState;Lnet/minecaft/entity/player/PlayerEntity;Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)V")
-    public void checkDeepslate(BlockState state, PlayerEntity player, BlockView world, BlockPos pos, CallbackInfoReturnable<Float> ci) {
+    @Inject(at = @At("HEAD"), method = "calcBlockBreakingDelta(Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)F", cancellable = true)
+    public void checkDeepslate(BlockState state, PlayerEntity player, BlockView world, BlockPos pos, CallbackInfoReturnable<Float> ci){
         if(ChronosSettings.netheritePickaxeInstantMineDeepslate && state.getBlock().equals(Blocks.DEEPSLATE)){
             int i = player.canHarvest(state) ? 30 : 100;
             ci.setReturnValue(player.getBlockBreakingSpeed(state) / 1.6F / (float)i);
