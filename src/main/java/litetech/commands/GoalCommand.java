@@ -32,7 +32,7 @@ public class GoalCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(
                 literal("goal")
-                        .requires(player -> SettingsManager.canUseCommand(player, ChronosSettings.goalCommand))
+                        .requires(player -> SettingsManager.canUseCommand(player, ChronosSettings.commandGoal))
                         .then(literal("set")
                                 .then(argument("objective", ScoreboardObjectiveArgumentType.scoreboardObjective())
                                         .executes(context -> displayGoal(

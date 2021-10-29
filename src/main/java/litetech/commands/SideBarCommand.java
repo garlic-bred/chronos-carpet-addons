@@ -29,7 +29,7 @@ public class SideBarCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(
                 CommandManager.literal("sidebar")
-                        .requires(player -> SettingsManager.canUseCommand(player, ChronosSettings.sidebarCommand))
+                        .requires(player -> SettingsManager.canUseCommand(player, ChronosSettings.commandSidebar))
                         .then(CommandManager.literal("show")
                                 .then(CommandManager.argument("objective", ScoreboardObjectiveArgumentType.scoreboardObjective())
                                         .executes(context -> executeSetDisplay(

@@ -5,16 +5,12 @@
   "compatibilityLevel": "JAVA_8",
   "server": [
     "server.BlockMixin",
-    "server.SeedCommandMixin",
     "server.ServerPlayerEntityMixin",
     "server.ServerScoreboardMixin",
     "server.WorldMixin",
     "server.objective.ScoreboardMixin",
     "server.objective.ScoreboardObjectiveMixin",
-    "server.objective.ScoreboardPlayerScoreMixin",
-    "server.op_level.DedicatedServerMixin",
-    "server.op_level.IntegratedServerMixin",
-    "server.op_level.OpCommandMixin"
+    "server.objective.ScoreboardPlayerScoreMixin"
   ],
   "injectors": {
     "defaultRequire": 1
