@@ -1,6 +1,6 @@
-package carpet_extension.mixins;
+package chronos.mixins;
 
-import carpet_extension.ChronosSettings;
+import chronos.ChronosSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

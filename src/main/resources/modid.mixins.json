@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "carpet_extension.mixins",
+  "package": "chronos.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "CrashReport_noopMixin",

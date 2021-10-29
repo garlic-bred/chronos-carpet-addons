@@ -1,12 +1,7 @@
-package carpet_extension.mixins;
+package chronos.mixins;
 
-import carpet.CarpetSettings;
-import carpet_extension.ChronosSettings;
 import net.minecraft.block.*;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.registry.Registry;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
 
 @Mixin(Blocks.class)

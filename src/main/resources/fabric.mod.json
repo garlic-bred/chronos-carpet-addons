@@ -9,8 +9,8 @@
     "Me!"
   ],
   "contact": {
-    "homepage": "https://web.me/",
-    "sources": "https://github.com/gnembon/fabric-carpet-extension-example-mod"
+    "homepage": "https://chronosmc.ml/",
+    "sources": "https://github.com/ChronosServer/chronos-carpet-addons"
   },
 
   "license": "CC0-1.0",
@@ -19,11 +19,12 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "carpet_extension.ChronosExtension"
+      "chronos.ChronosExtension"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "modid.mixins.json",
+    "litetech-additions.mixins.json"
   ],
 
   "depends": {
