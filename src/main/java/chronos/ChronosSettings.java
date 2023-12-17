@@ -1,41 +1,72 @@
 package chronos;
 
-import carpet.settings.ParsedRule;
 import carpet.settings.Rule;
-import carpet.settings.Validator;
-import net.minecraft.server.command.ServerCommandSource;
 
-import static carpet.settings.RuleCategory.CREATIVE;
-import static carpet.settings.RuleCategory.SURVIVAL;
+import static carpet.settings.RuleCategory.*;
 
 public class ChronosSettings
 {
-    @Rule(desc="Deepslate can be instant mined with netherite pickaxe", category = {SURVIVAL, "chronos"})
-    public static boolean netheritePickaxeInstantMineDeepslate = false;
-
-    @Rule(
-            desc = "Enables players without OP to change what objective is being displayed, and query a player's objectives",
-            extra = {"Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing"},
-            category = {SURVIVAL, "chronos"}
-    )
-    public static boolean commandSidebar = true;
+    private static final String CHRONOS = "chronos";
 
     @Rule(
             desc = "Set a goal for a scoreboard objective to complete.",
-            extra = {"This goal is for individual players and is not persistent between logins"},
-            category = {SURVIVAL, "chronos"}
+            extra = {"This goal is for individual players and is not persistent between logins", "Taken from litetech carpet addons"},
+            category = { SURVIVAL, COMMAND, CHRONOS }
     )
-    public static boolean commandGoal = true;
+    public static boolean commandGoal = false;
+
+    @Rule(
+            desc = "Enables players without OP to change what objective is being displayed, and query a player's objectives",
+            extra = {"Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing", "Taken from litetech addons"},
+            category = { SURVIVAL, CHRONOS }
+    )
+    public static boolean commandSidebar = false;
+
+    @Rule(
+            desc = "Enables /total command to know the total sum of a scoreboardTaken from johan carpet addons",
+            extra = {"Taken from johan's carpet addons"},
+            category = { SURVIVAL, COMMAND, CHRONOS }
+    )
+    public static boolean commandTotal = false;
+
+    @Rule(
+            desc = "Allows players in Creative mode to kill entities in one hit",
+            extra = {"If the player is sneaking, other entities around the target get killed too", "Taken from lunaar carpet addons"},
+            category = { CREATIVE, CHRONOS }
+    )
+    public static boolean creativeOneHitKill = false;
+
+    @Rule(
+            desc = "Toggle for end gateway cooldown.",
+            category = { SURVIVAL, CHRONOS }
+    )
+    public static boolean endGatewayCooldown = true;
+
+    @Rule(
+            desc="Deepslate can be instant mined with netherite pickaxe",
+            category = { SURVIVAL, CHRONOS }
+    )
+    public static boolean netheritePickaxeInstantMineDeepslate = false;
+
+    @Rule(
+            desc = "Backports 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds.",
+            extra = {"Taken from johan's carpet addons"},
+            category = { SURVIVAL, CHRONOS }
+    )
+    public static boolean oldFlintAndSteelBehavior = false;
 
     @Rule(
             desc = "Display total score on the sidebar",
-            category = {SURVIVAL, "chronos"}
+            extra = {"Taken from johan's carpet addons"},
+            category = { SURVIVAL, COMMAND, CHRONOS }
     )
     public static boolean totalScore = false;
 
     @Rule(
-            desc = "Player's bedrock \"mined\" statistic is increased when a bedrock block is broken 2 game ticks after a piston is placed",
-            category = {SURVIVAL, "chronos"}
+            desc = "Bots don't appear on scoreboards and do not count in the total if they're not in a team",
+            extra = {"Normal players need to be in a team!", "Based on code by JohanVonElectrum", "Taken from lunaar carpet addons"},
+            category = { SURVIVAL, CHRONOS }
     )
-    public static boolean bedrockBrokenStatistics = false;
+    public static boolean scoreboardIgnoresBots = false;
+
 }

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "johan.mixins",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "ServerScoreboardMixin",
+    "EndGatewayBlockEntityMixin",
+    "AbstractFireBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

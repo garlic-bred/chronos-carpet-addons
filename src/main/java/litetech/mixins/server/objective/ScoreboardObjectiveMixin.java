@@ -1,4 +1,4 @@
-package litetech.mixin.server.objective;
+package litetech.mixins.server.objective;
 
 import litetech.helpers.ScoreboardObjectiveHelper;
 import net.minecraft.scoreboard.ScoreboardObjective;

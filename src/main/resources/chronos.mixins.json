@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "chronos.mixins",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"CrashReport_noopMixin",
+		"MixinAbstractBlock"
+	],
+	"client": [
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

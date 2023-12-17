@@ -1,38 +1,39 @@
 {
-  "schemaVersion": 1,
-  "id": "chronos-carpet-addons",
-  "version": "1.4.6",
+	"schemaVersion": 1,
+	"id": "chronos-carpet-addons",
+	"version": "1.5.0",
 
-  "name": "Chronos-Carpet-Addons",
-  "description": "Carpet additions for chronos server",
-  "authors": [
-    "Me!"
-  ],
-  "contact": {
-    "homepage": "https://chronosmc.ml/",
-    "sources": "https://github.com/ChronosServer/chronos-carpet-addons"
-  },
+	"name": "Chronos Carpet Addons",
+	"description": "Carpet additions for chronos server",
+	"authors": [
+		"bread, pentasteve"
+	],
+	"contact": {
+		"sources": "https://github.com/garlic-bred/chronos-carpet-addons"
+	},
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+	"license": "CC0-1.0",
+	"icon": "assets/chronos-carpet-addons/icon.png",
 
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "chronos.ChronosExtension"
-    ]
-  },
-  "mixins": [
-    "modid.mixins.json",
-    "litetech-additions.mixins.json"
-  ],
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"chronos.ChronosExtension"
+		]
+	},
+	"mixins": [
+		"chronos.mixins.json",
+		"litetech.mixins.json",
+		"lunaar.mixins.json",
+		"johan.mixins.json"
+	],
 
-  "depends": {
-    "minecraft": "1.17.x",
-    "fabricloader": ">=0.11.6",
-    "carpet": "*"
-  },
-  "suggests": {
-    "flamingo": "*"
-  }
+	"depends": {
+		"minecraft": "1.18.2",
+		"fabricloader": ">=0.15.2",
+		"carpet": "*"
+	},
+	"suggests": {
+		"flamingo": "*"
+	}
 }

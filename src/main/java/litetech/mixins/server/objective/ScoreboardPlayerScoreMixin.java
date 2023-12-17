@@ -1,4 +1,4 @@
-package litetech.mixin.server.objective;
+package litetech.mixins.server.objective;
 
 import carpet.CarpetServer;
 import litetech.commands.GoalCommand;

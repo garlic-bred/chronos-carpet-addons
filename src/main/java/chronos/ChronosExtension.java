@@ -4,6 +4,7 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
+import johan.commands.TotalCommand;
 import litetech.commands.GoalCommand;
 import litetech.commands.SideBarCommand;
 import net.fabricmc.api.ModInitializer;
@@ -41,6 +42,7 @@ public class ChronosExtension implements CarpetExtension, ModInitializer {
     {
         SideBarCommand.register(dispatcher);
         GoalCommand.register(dispatcher);
+        TotalCommand.register(dispatcher);
     }
 
     @Override

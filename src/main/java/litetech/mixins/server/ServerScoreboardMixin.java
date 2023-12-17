@@ -1,4 +1,4 @@
-package litetech.mixin.server;
+package litetech.mixins.server;
 
 import chronos.ChronosSettings;
 import net.minecraft.network.Packet;
@@ -78,4 +78,3 @@ public abstract class ServerScoreboardMixin extends Scoreboard  {
                 "Total", i);
     }
 }
-

@@ -1,10 +1,11 @@
 {
   "required": true,
-  "package": "chronos.mixins",
+  "package": "lunaar.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "CrashReport_noopMixin",
-    "MixinAbstractBlock"
+    "accessors.EntityAccessorMixin",
+    "ScoreboardPlayerScoreMixin",
+    "PlayerEntityMixin"
   ],
   "client": [
   ],

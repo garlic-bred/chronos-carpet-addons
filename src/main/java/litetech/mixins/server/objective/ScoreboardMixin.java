@@ -1,4 +1,4 @@
-package litetech.mixin.server.objective;
+package litetech.mixins.server.objective;
 
 import com.google.common.collect.Maps;
 import litetech.helpers.ScoreboardObjectiveHelper;
