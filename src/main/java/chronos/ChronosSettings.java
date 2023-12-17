@@ -17,13 +17,13 @@ public class ChronosSettings
 
     @Rule(
             desc = "Enables players without OP to change what objective is being displayed, and query a player's objectives",
-            extra = {"Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing", "Taken from litetech addons"},
-            category = { SURVIVAL, CHRONOS }
+            extra = {"Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing", "Taken from litetech carpet addons"},
+            category = { SURVIVAL, COMMAND, CHRONOS }
     )
     public static boolean commandSidebar = false;
 
     @Rule(
-            desc = "Enables /total command to know the total sum of a scoreboardTaken from johan carpet addons",
+            desc = "Enables /total command to know the total sum of a scoreboard.",
             extra = {"Taken from johan's carpet addons"},
             category = { SURVIVAL, COMMAND, CHRONOS }
     )
@@ -38,12 +38,13 @@ public class ChronosSettings
 
     @Rule(
             desc = "Toggle for end gateway cooldown.",
+            extra = {"Taken from johan's carpet addons"},
             category = { SURVIVAL, CHRONOS }
     )
     public static boolean endGatewayCooldown = true;
 
     @Rule(
-            desc="Deepslate can be instant mined with netherite pickaxe",
+            desc="Deepslate can be instant mined with netherite pickaxe and haste II",
             category = { SURVIVAL, CHRONOS }
     )
     public static boolean netheritePickaxeInstantMineDeepslate = false;
@@ -51,7 +52,7 @@ public class ChronosSettings
     @Rule(
             desc = "Backports 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds.",
             extra = {"Taken from johan's carpet addons"},
-            category = { SURVIVAL, CHRONOS }
+            category = { CREATIVE, CHRONOS }
     )
     public static boolean oldFlintAndSteelBehavior = false;
 
@@ -64,7 +65,7 @@ public class ChronosSettings
 
     @Rule(
             desc = "Bots don't appear on scoreboards and do not count in the total if they're not in a team",
-            extra = {"Normal players need to be in a team!", "Based on code by JohanVonElectrum", "Taken from lunaar carpet addons"},
+            extra = {"Real players need to be in a team!", "Taken from lunaar carpet addons", "Based on code by JohanVonElectrum"},
             category = { SURVIVAL, CHRONOS }
     )
     public static boolean scoreboardIgnoresBots = false;

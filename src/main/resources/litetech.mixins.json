@@ -4,7 +4,6 @@
   "package": "litetech.mixins.server",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ServerScoreboardMixin",
     "objective.ScoreboardMixin",
     "objective.ScoreboardObjectiveMixin",
     "objective.ScoreboardPlayerScoreMixin"
