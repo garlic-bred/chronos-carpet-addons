@@ -37,6 +37,13 @@ public class ChronosSettings
     public static boolean creativeOneHitKill = false;
 
     @Rule(
+            desc = "Allows raids to start within 96 blocks of existing raids.",
+            extra = {"May be useful for designing raid farms"},
+            category = { CREATIVE, EXPERIMENTAL, CHRONOS}
+    )
+    public static boolean ignoreExistingRaids = false;
+
+    @Rule(
             desc = "Toggle for end gateway cooldown.",
             extra = {"Taken from johan's carpet addons"},
             category = { SURVIVAL, CHRONOS }

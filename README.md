@@ -28,6 +28,12 @@ Allows players in Creative mode to kill entities in one hit. If the player is sn
 * Default value: `false`
 * Categories: `CREATIVE`, `CHRONOS`
 
+### ignoreExistingRaids
+Allows raids to start within 96 blocks of existing raids. May be useful for designing raid farms.
+* Type: `boolean`
+* Default value: `false`
+* Categories: `CREATIVE`, `EXPERIMENTAL`, `CHRONOS`
+
 ### endGatewayCooldown
 Toggle for end gateway cooldown. Taken from johan's carpet addons.
 * Type: `boolean`
