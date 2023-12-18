@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "chronos-carpet-addons",
-	"version": "1.5.1",
+	"version": "1.5.2",
 
 	"name": "Chronos Carpet Addons",
 	"description": "Carpet additions for chronos server",
