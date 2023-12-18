@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Collection;
 import java.util.Map;
 
 @Mixin(Scoreboard.class)
@@ -23,10 +24,9 @@ public abstract class ScoreboardMixin {
     @Final
     private final Map<String, Map<ScoreboardObjective, ScoreboardPlayerScore>> playerObjectives = Maps.newHashMap();
 
-    @Shadow
-    public abstract ScoreboardObjective getObjective(String name);
-
     @Shadow public abstract ScoreboardPlayerScore getPlayerScore(String player, ScoreboardObjective objective);
+
+    @Shadow public abstract Collection<ScoreboardObjective> getObjectives();
 
     @Inject(method = "toNbt", at = @At("HEAD"), cancellable = true)
     public void toNbt(CallbackInfoReturnable<NbtList> cir) {
@@ -52,7 +52,13 @@ public abstract class ScoreboardMixin {
     public void readNbt(NbtList NbtList, CallbackInfo ci) {
         for(int i = 0; i < NbtList.size(); ++i) {
             NbtCompound compoundTag = NbtList.getCompound(i);
-            ScoreboardObjective scoreboardObjective = this.getObjective(compoundTag.getString("Objective"));
+//            ScoreboardObjective scoreboardObjective = this.getObjective(compoundTag.getString("Objective"));
+            ScoreboardObjective scoreboardObjective = null;
+            for (ScoreboardObjective objective : this.getObjectives()) {
+                if (objective.getName().equals(compoundTag.getString("Objective"))) {
+                    scoreboardObjective = objective;
+                }
+            }
             String string = compoundTag.getString("Name");
             if (string.length() > 40) {
                 string = string.substring(0, 40);

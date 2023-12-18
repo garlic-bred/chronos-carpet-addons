@@ -8,11 +8,10 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.ScoreboardDisplayS2CPacket;
 import net.minecraft.network.packet.s2c.play.ScoreboardObjectiveUpdateS2CPacket;
 import net.minecraft.network.packet.s2c.play.ScoreboardPlayerUpdateS2CPacket;
-import net.minecraft.scoreboard.Scoreboard;
-import net.minecraft.scoreboard.ScoreboardObjective;
-import net.minecraft.scoreboard.ScoreboardPlayerScore;
-import net.minecraft.scoreboard.ServerScoreboard;
+import net.minecraft.scoreboard.*;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -20,9 +19,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 @Mixin(ServerScoreboard.class)
 public abstract class ServerScoreboardMixin extends Scoreboard {
+
+    @Shadow @Final private Set<ScoreboardObjective> objectives;
 
     @Inject(method = "updateScore", at = @At("HEAD"), cancellable = true)
     public void updateScore(ScoreboardPlayerScore score, CallbackInfo ci) {
@@ -42,16 +44,20 @@ public abstract class ServerScoreboardMixin extends Scoreboard {
         if (ChronosSettings.totalScore)
             list.add(createPacket(objective));
 
-        for(int i = 0; i < 19; ++i) {
-            if (this.getObjectiveForSlot(i) == objective) {
-                list.add(new ScoreboardDisplayS2CPacket(i, objective));
+        ScoreboardDisplaySlot[] var3 = ScoreboardDisplaySlot.values();
+        int var4 = var3.length;
+
+        for(int var5 = 0; var5 < var4; ++var5) {
+            ScoreboardDisplaySlot scoreboardDisplaySlot = var3[var5];
+            if (this.getObjectiveForSlot(scoreboardDisplaySlot) == objective) {
+                list.add(new ScoreboardDisplayS2CPacket(scoreboardDisplaySlot, objective));
             }
         }
 
-        Iterator var5 = this.getAllPlayerScores(objective).iterator();
+        Iterator playerScoreIter = this.getAllPlayerScores(objective).iterator();
 
-        while(var5.hasNext()) {
-            ScoreboardPlayerScore scoreboardPlayerScore = (ScoreboardPlayerScore)var5.next();
+        while(playerScoreIter.hasNext()) {
+            ScoreboardPlayerScore scoreboardPlayerScore = (ScoreboardPlayerScore) playerScoreIter.next();
             if (!ChronosSettings.scoreboardIgnoresBots || scoreboardPlayerScore.getScoreboard().getPlayerTeam(scoreboardPlayerScore.getPlayerName()) != null)
                 list.add(new ScoreboardPlayerUpdateS2CPacket(ServerScoreboard.UpdateMode.CHANGE, scoreboardPlayerScore.getObjective().getName(), scoreboardPlayerScore.getPlayerName(), scoreboardPlayerScore.getScore()));
         }

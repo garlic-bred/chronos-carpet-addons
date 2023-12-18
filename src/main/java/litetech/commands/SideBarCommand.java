@@ -12,6 +12,7 @@ import net.minecraft.command.argument.ScoreboardObjectiveArgumentType;
 import net.minecraft.command.argument.ScoreboardSlotArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.scoreboard.ScoreboardDisplaySlot;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.server.command.CommandManager;
@@ -34,7 +35,7 @@ public class SideBarCommand {
                                         .executes(context -> executeSetDisplay(
                                                 context.getSource(),
                                                 ScoreboardObjectiveArgumentType.getObjective(context, "objective"),
-                                                1
+                                                null
                                         ))
                                         .then(CommandManager.argument("slot", ScoreboardSlotArgumentType.scoreboardSlot())
                                                 .executes(context -> executeSetDisplay(
@@ -82,22 +83,22 @@ public class SideBarCommand {
 
     private static int executeClearDisplay(ServerCommandSource source) throws CommandSyntaxException {
         Scoreboard scoreboard = source.getServer().getScoreboard();
-        if (scoreboard.getObjectiveForSlot(1) == null) {
+        if (scoreboard.getObjectiveForSlot(null) == null) {
             throw OBJECTIVES_DISPLAY_ALREADY_SET_EXCEPTION.create();
         } else {
-            scoreboard.setObjectiveSlot(1, (ScoreboardObjective) null);
-            source.sendMessage(Text.translatable("commands.scoreboard.objectives.display.cleared", Scoreboard.getDisplaySlotNames()[1]));
+            scoreboard.setObjectiveSlot(null, (ScoreboardObjective) null);
+            source.sendMessage(Text.translatable("commands.scoreboard.objectives.display.cleared"));
             return 0;
         }
     }
 
-    private static int executeSetDisplay(ServerCommandSource source, ScoreboardObjective objective, int slot) throws CommandSyntaxException {
+    private static int executeSetDisplay(ServerCommandSource source, ScoreboardObjective objective, ScoreboardDisplaySlot slot) throws CommandSyntaxException {
         Scoreboard scoreboard = source.getServer().getScoreboard();
         if (scoreboard.getObjectiveForSlot(slot) == objective) {
             throw OBJECTIVES_DISPLAY_ALREADY_SET_EXCEPTION.create();
         } else {
             scoreboard.setObjectiveSlot(slot, objective);
-            source.sendMessage(Text.translatable("commands.scoreboard.objectives.display.set", Scoreboard.getDisplaySlotNames()[1], objective.getDisplayName()));
+            source.sendMessage(Text.translatable("commands.scoreboard.objectives.display.set", objective.getDisplayName(), objective.getDisplayName()));
             return 0;
         }
     }
