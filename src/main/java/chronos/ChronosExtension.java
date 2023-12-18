@@ -5,7 +5,6 @@ import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
 import johan.commands.TotalCommand;
-import litetech.commands.GoalCommand;
 import litetech.commands.SideBarCommand;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.MinecraftServer;
@@ -41,7 +40,6 @@ public class ChronosExtension implements CarpetExtension, ModInitializer {
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher)
     {
         SideBarCommand.register(dispatcher);
-        GoalCommand.register(dispatcher);
         TotalCommand.register(dispatcher);
     }
 

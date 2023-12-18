@@ -9,13 +9,6 @@ public class ChronosSettings
     private static final String CHRONOS = "chronos";
 
     @Rule(
-            desc = "Set a goal for a scoreboard objective to complete.",
-            extra = {"This goal is for individual players and is not persistent between logins", "Taken from litetech carpet addons"},
-            category = { SURVIVAL, COMMAND, CHRONOS }
-    )
-    public static boolean commandGoal = false;
-
-    @Rule(
             desc = "Enables players without OP to change what objective is being displayed, and query a player's objectives",
             extra = {"Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing", "Taken from litetech carpet addons"},
             category = { SURVIVAL, COMMAND, CHRONOS }
