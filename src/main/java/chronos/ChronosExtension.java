@@ -7,7 +7,6 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.mojang.brigadier.CommandDispatcher;
 import johan.commands.TotalCommand;
-import litetech.commands.GoalCommand;
 import litetech.commands.SideBarCommand;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.command.CommandRegistryAccess;
@@ -49,7 +48,6 @@ public class ChronosExtension implements CarpetExtension, ModInitializer {
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher, final CommandRegistryAccess commandBuildContext)
     {
         SideBarCommand.register(dispatcher);
-        GoalCommand.register(dispatcher);
         TotalCommand.register(dispatcher);
     }
 
