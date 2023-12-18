@@ -1,10 +1,6 @@
 {
   "carpet.category.chronos": "chronos",
 
-  "carpet.rule.commandGoal.desc": "Set a goal for a scoreboard objective to complete.",
-  "carpet.rule.commandGoal.extra.0": "This goal is for individual players and is not persistent between logins.",
-  "carpet.rule.commandGoal.extra.1": "Taken from litetech carpet addons.",
-
   "carpet.rule.commandSidebar.desc": "Enables players without OP to change what objective is being displayed, and query a player's objectives.",
   "carpet.rule.commandSidebar.extra.0": "Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing.",
   "carpet.rule.commandSidebar.extra.1": "Taken from litetech carpet addons.",

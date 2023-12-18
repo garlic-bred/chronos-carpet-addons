@@ -4,12 +4,6 @@ A carpet mod addon made for the [Chronos SMP](https://discord.gg/VvPucVAjUS). It
 
 ## Rules
 
-### commandGoal
-Set a goal for a scoreboard objective to complete. This goal is for individual players and is not persistent between logins. Taken from litetech carpet addons.
-* Type: `boolean`
-* Default value: `false`
-* Categories: `SURVIVAL`, `COMMAND`, `CHRONOS`
-
 ### commandSidebar
 Enables players without OP to change what objective is being displayed, and query a player's objectives. Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing. Taken from litetech carpet addons.
 * Type: `boolean`
