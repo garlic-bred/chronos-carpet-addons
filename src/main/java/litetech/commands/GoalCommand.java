@@ -1,6 +1,6 @@
 package litetech.commands;
 
-import carpet.settings.SettingsManager;
+import carpet.utils.CommandHelper;
 import chronos.ChronosSettings;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -12,7 +12,7 @@ import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 import java.util.HashMap;
@@ -25,14 +25,14 @@ public class GoalCommand {
     public static final HashMap<ServerPlayerEntity, Goal> CURRENT_GOALS = new HashMap<>();
 
     private static final SimpleCommandExceptionType NO_GOALS_SET_FOR_PLAYER = new SimpleCommandExceptionType(
-            new LiteralText("No goals have been set for this player!"));
+            Text.literal("No goals have been set for this player!"));
     private static final SimpleCommandExceptionType GOAL_NOT_SET_FOR_OBJECTIVE = new SimpleCommandExceptionType(
-            new LiteralText("No goals have been set for this objective!"));
+            Text.literal("No goals have been set for this objective!"));
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(
                 literal("goal")
-                        .requires(player -> SettingsManager.canUseCommand(player, ChronosSettings.commandGoal))
+                        .requires(player -> CommandHelper.canUseCommand(player, ChronosSettings.commandGoal))
                         .then(literal("set")
                                 .then(argument("objective", ScoreboardObjectiveArgumentType.scoreboardObjective())
                                         .executes(context -> displayGoal(
@@ -62,8 +62,8 @@ public class GoalCommand {
         CURRENT_GOALS.put(source.getPlayer(), playerGoal);
 
         setDisplay(source.getPlayer(), playerGoal);
-        source.sendFeedback(new LiteralText(String.format("Displaying goal for %s",
-                objective.getDisplayName().getString())), false);
+        source.sendMessage(Text.literal(String.format("Displaying goal for %s",
+                objective.getDisplayName().getString())));
         return 0;
     }
 
@@ -77,8 +77,8 @@ public class GoalCommand {
         playerGoal.setGoal(goal);
         setDisplay(source.getPlayer(), playerGoal);
 
-        source.sendFeedback(new LiteralText(String.format("Set goal to %s for objective: %s", goal,
-                objective.getDisplayName().getString())), false);
+        source.sendMessage(Text.literal(String.format("Set goal to %s for objective: %s", goal,
+                objective.getDisplayName().getString())));
         return 0;
     }
 
@@ -94,7 +94,7 @@ public class GoalCommand {
 
     private static void setDisplay(ServerPlayerEntity player, Goal playerGoal) {
         player.networkHandler.sendPacket(new TitleS2CPacket(
-                new LiteralText(playerGoal.getScore() + "/" + playerGoal.getGoal()).styled(style -> style
+                Text.literal(playerGoal.getScore() + "/" + playerGoal.getGoal()).styled(style -> style
                         .withColor(Formatting.GOLD)).styled(style -> style.withBold(true))
         ));
     }

@@ -8,8 +8,8 @@ import net.minecraft.command.argument.ScoreboardObjectiveArgumentType;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.BaseText;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
@@ -34,10 +34,7 @@ public class TotalCommand {
     }
 
     private static int execute(ServerCommandSource source, ScoreboardObjective objective, boolean bots) {
-        BaseText total = new LiteralText("");
-        total.append("[").append(objective.getDisplayName()).append("] Total: " + getTotal(source, objective, bots));
-        source.sendFeedback(total, false);
-
+        source.sendMessage(Text.literal("[" + objective.getDisplayName() + "] Total: " + getTotal(source, objective, bots)));
         return 1;
     }
 

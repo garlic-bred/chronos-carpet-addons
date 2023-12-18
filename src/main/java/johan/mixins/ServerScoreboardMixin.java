@@ -4,7 +4,7 @@ import carpet.CarpetServer;
 import chronos.ChronosSettings;
 import com.google.common.collect.Lists;
 import johan.commands.TotalCommand;
-import net.minecraft.network.Packet;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.ScoreboardDisplayS2CPacket;
 import net.minecraft.network.packet.s2c.play.ScoreboardObjectiveUpdateS2CPacket;
 import net.minecraft.network.packet.s2c.play.ScoreboardPlayerUpdateS2CPacket;
