@@ -10,6 +10,11 @@ public class ChronosSettings
     private static final String CHRONOS = "chronos";
 
     @Rule(
+            categories = { SURVIVAL, EXPERIMENTAL, CHRONOS }
+    )
+    public static boolean betterCarefulBreak = false;
+
+    @Rule(
 //            desc = "Enables players without OP to change what objective is being displayed, and query a player's objectives",
 //            extra = {"Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing", "Taken from litetech carpet addons"},
             categories = { SURVIVAL, COMMAND, CHRONOS }

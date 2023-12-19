@@ -1,6 +1,9 @@
 {
   "carpet.category.chronos": "chronos",
 
+  "carpet.rule.betterCarefulBreak.desc": "If you break a block while sneaking then the block gets put in your inventory.",
+  "carpet.rule.betterCarefulBreak.extra0": "Any blocks supported by that block that get broken instantly will also be put in your inventory.",
+
   "carpet.rule.commandSidebar.desc": "Enables players without OP to change what objective is being displayed, and query a player's objectives.",
   "carpet.rule.commandSidebar.extra.0": "Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing.",
   "carpet.rule.commandSidebar.extra.1": "Taken from litetech carpet addons.",
