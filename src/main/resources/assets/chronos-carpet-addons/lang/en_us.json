@@ -1,7 +1,7 @@
 {
   "carpet.category.chronos": "chronos",
 
-  "carpet.rule.betterCarefulBreak.dsec": "If you break a block while sneaking then the block gets put in your inventory.",
+  "carpet.rule.betterCarefulBreak.desc": "If you break a block while sneaking then the block gets put in your inventory.",
   "carpet.rule.betterCarefulBreak.extra0": "Any blocks supported by that block that get broken instantly will also be put in your inventory.",
 
   "carpet.rule.commandSidebar.desc": "Enables players without OP to change what objective is being displayed, and query a player's objectives.",
