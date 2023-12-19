@@ -5,7 +5,9 @@
 	"mixins": [
 		"CrashReport_noopMixin",
 		"MixinAbstractBlock",
-		"RaidManagerMixin"
+		"RaidManagerMixin",
+		"ServerPlayNetworkHandlerMixin",
+		"BlockMixin"
 	],
 	"client": [
 	],
