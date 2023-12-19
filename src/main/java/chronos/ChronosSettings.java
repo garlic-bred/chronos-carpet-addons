@@ -9,6 +9,11 @@ public class ChronosSettings
 {
     private static final String CHRONOS = "chronos";
 
+    @Rule(
+            categories = { SURVIVAL, EXPERIMENTAL, CHRONOS}
+    )
+    public static boolean betterCarefulBreak = false;
+
     // Disabled because idk how to make it work - use scoreboardPublic from essential carpet addons instead
 //    @Rule(
 ////            desc = "Enables players without OP to change what objective is being displayed, and query a player's objectives",
