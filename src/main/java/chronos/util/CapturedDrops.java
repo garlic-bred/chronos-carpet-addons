@@ -1,34 +1,32 @@
 package chronos.util;
 
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.minecraft.text.LiteralText;
+import net.minecraft.util.Util;
 
 public class CapturedDrops {
 
-    private static boolean capturing = false;
-    private static List<ItemStack> drops = new ArrayList<>();
+    private static PlayerEntity player;
 
-    public static void capture(ItemStack item) {
-        drops.add(item);
-    }
-
-    public static List<ItemStack> getDrops() {
-        return drops;
+    public static boolean capture(ItemStack item) {
+        return player != null && player.getInventory().insertStack(item);
     }
 
     public static void clear() {
-        drops.clear();
-        capturing = false;
+        player = null;
     }
 
-    public static void startCapturing() {
-        capturing = true;
+    public static void startCapturing(PlayerEntity player) {
+        CapturedDrops.player = player;
     }
 
     public static boolean isCapturing() {
-        return capturing;
+        return player != null;
+    }
+
+    public static PlayerEntity getPlayer() {
+        return player;
     }
 
 }

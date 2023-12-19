@@ -13,7 +13,7 @@ public class ChronosSettings
             extra = {"Any blocks supported by that block that get broken instantly will also be put in your inventory."},
             category = { SURVIVAL, EXPERIMENTAL, CHRONOS }
     )
-    public static boolean chronosCarefulBreak = false;
+    public static boolean betterCarefulBreak = false;
 
     @Rule(
             desc = "Enables players without OP to change what objective is being displayed, and query a player's objectives",
