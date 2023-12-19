@@ -2,8 +2,6 @@ package chronos.util;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Util;
 
 public class CapturedDrops {
 

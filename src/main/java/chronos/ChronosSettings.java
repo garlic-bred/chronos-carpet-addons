@@ -10,16 +10,16 @@ public class ChronosSettings
     private static final String CHRONOS = "chronos";
 
     @Rule(
-            desc = "If you break a block while sneaking then the block gets put in your inventory.",
-            extra = {"Any blocks supported by that block that get broken instantly will also be put in your inventory."},
-            category = { SURVIVAL, EXPERIMENTAL, CHRONOS }
+//            desc = "If you break a block while sneaking then the block gets put in your inventory.",
+//            extra = {"Any blocks supported by that block that get broken instantly will also be put in your inventory."},
+            categories = { SURVIVAL, EXPERIMENTAL, CHRONOS }
     )
     public static boolean betterCarefulBreak = false;
 
     @Rule(
-            desc = "Enables players without OP to change what objective is being displayed, and query a player's objectives",
-            extra = {"Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing", "Taken from litetech carpet addons"},
-            category = { SURVIVAL, COMMAND, CHRONOS }
+//            desc = "Enables players without OP to change what objective is being displayed, and query a player's objectives",
+//            extra = {"Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing", "Taken from litetech carpet addons"},
+            categories = { SURVIVAL, COMMAND, CHRONOS }
     )
     public static boolean commandSidebar = false;
 
