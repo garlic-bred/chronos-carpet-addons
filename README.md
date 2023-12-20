@@ -4,6 +4,12 @@ A carpet mod addon made for the [Chronos SMP](https://discord.gg/VvPucVAjUS). It
 
 ## Rules
 
+### betterCarefulBreak
+If you break a block while sneaking then the block gets put in your inventory. Any blocks supported by that block that get broken instantly will also be put in your inventory.
+* Type: `boolean`
+* Default value: `false`
+* Categories: `SURVIVAL`, `EXPERIMENTAL`, `CHRONOS`
+
 ### commandSidebar
 Enables players without OP to change what objective is being displayed, and query a player's objectives. Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing. Taken from litetech carpet addons.
 * Type: `boolean`
