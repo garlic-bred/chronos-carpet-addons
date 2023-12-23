@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "chronos-carpet-addons",
-	"version": "1.5.2",
+	"version": "1.5.3",
 
 	"name": "Chronos Carpet Addons",
 	"description": "Carpet additions for chronos server",
@@ -25,12 +25,13 @@
 		"chronos.mixins.json",
 		"litetech.mixins.json",
 		"lunaar.mixins.json",
-		"johan.mixins.json"
+		"johan.mixins.json",
+		"epsilon.mixins.json"
 	],
 
 	"depends": {
-		"minecraft": "1.18.2",
-		"fabricloader": ">=0.15.2",
+		"minecraft": "1.17.1",
+		"fabricloader": ">=0.14.2",
 		"carpet": "*"
 	},
 	"suggests": {

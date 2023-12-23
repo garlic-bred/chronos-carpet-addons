@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "epsilon.mixins",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "EndermanEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

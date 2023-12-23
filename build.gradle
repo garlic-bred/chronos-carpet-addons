@@ -17,12 +17,12 @@ repositories {
 }
 
 loom {
-    splitEnvironmentSourceSets()
+//    splitEnvironmentSourceSets()
 
 	mods {
 		"chronos-carpet-addons" {
 			sourceSet sourceSets.main
-			sourceSet sourceSets.client
+//			sourceSet sourceSets.client
 		}
 	}
 

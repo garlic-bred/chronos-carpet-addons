@@ -8,6 +8,13 @@ public class ChronosSettings
 {
     private static final String CHRONOS = "chronos";
 
+    @Rule (
+            desc = "When true turns off endermen griefing...except melons",
+            extra = { "Taken from epsilon carpet addons" },
+            category = { SURVIVAL, CHRONOS }
+    )
+    public static boolean antiEnderGriefExceptMelon = false; // fu melons
+
     @Rule(
             desc = "If you break a block while sneaking then the block gets put in your inventory.",
             extra = {"Any blocks supported by that block that get broken instantly will also be put in your inventory."},
