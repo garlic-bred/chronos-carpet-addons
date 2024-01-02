@@ -34,7 +34,7 @@ public class BlockMixin {
                 break;
             }
         }
-        if (fromPlayerAction && CapturedDrops.isCapturing() && CapturedDrops.getPlayer().getWorld().getServer().isOnThread()) {
+        if (fromPlayerAction && CapturedDrops.isCapturing() && CapturedDrops.getPlayer().world.getServer().isOnThread()) {
             if (CapturedDrops.capture(stack)) {
                 PlayerEntity player = CapturedDrops.getPlayer();
                 world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2f, (CarpetServer.rand.nextFloat() - CarpetServer.rand.nextFloat()) * 1.4F + 2.0F);
