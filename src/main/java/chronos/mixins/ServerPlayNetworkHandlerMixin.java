@@ -23,7 +23,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
         }
     }
 
-    @Inject(method = "onPlayerAction", at = @At("TAIL"))
+    @Inject(method = "onPlayerAction", at = @At("RETURN"))
     public void stopCapturingDrops(PlayerActionC2SPacket packet, CallbackInfo ci) {
         CapturedDrops.clear();
     }
