@@ -52,6 +52,12 @@ Backports 1.12 flint and steel behavior. Flint and steel can be used for updatin
 * Default value: `false`
 * Categories: `CREATIVE`, `CHRONOS`
 
+### optimizedEntityRaycast
+Don't raycast for fall damage if the entity is moving upwards. Greatly increases the performance of entity accel cannons.
+* Type: `boolean`
+* Default value: `false`
+* Categories: `OPTIMIZATION`, `CHRONOS`
+
 ### totalScore
 Display total score on the sidebar. Taken from johan's carpet addons.
 * Type: `boolean`
