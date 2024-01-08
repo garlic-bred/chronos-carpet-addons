@@ -64,6 +64,12 @@ public class ChronosSettings
     public static boolean oldFlintAndSteelBehavior = false;
 
     @Rule(
+            desc = "Don't raycast for fall damage when the entity is moving upwards",
+            category = { OPTIMIZATION, CHRONOS }
+    )
+    public static boolean optimizedFallDamageRaycast = false;
+
+    @Rule(
             desc = "Display total score on the sidebar",
             extra = {"Taken from johan's carpet addons"},
             category = { SURVIVAL, COMMAND, CHRONOS }
