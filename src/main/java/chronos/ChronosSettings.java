@@ -9,10 +9,12 @@ public class ChronosSettings
 {
     private static final String CHRONOS = "chronos";
 
-    @Rule(
-            categories = { SURVIVAL, EXPERIMENTAL, CHRONOS }
-    )
-    public static boolean betterCarefulBreak = false;
+//    @Rule(
+////            desc = "If you break a block while sneaking then the block gets put in your inventory.",
+////            extra = {"Any blocks supported by that block that get broken instantly will also be put in your inventory."},
+//            categories = { SURVIVAL, EXPERIMENTAL, CHRONOS }
+//    )
+//    public static boolean betterCarefulBreak = false;
 
     @Rule(
 //            desc = "Enables players without OP to change what objective is being displayed, and query a player's objectives",
@@ -34,11 +36,6 @@ public class ChronosSettings
             categories = { CREATIVE, CHRONOS }
     )
     public static boolean creativeOneHitKill = false;
-
-    @Rule(
-            categories = { OPTIMIZATION, CHRONOS }
-    )
-    public static boolean disableNetherPortalCollisionCheck = false;
 
     @Rule(
 //            desc = "Allows raids to start within 96 blocks of existing raids.",
