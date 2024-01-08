@@ -65,6 +65,11 @@ public class ChronosSettings
     public static boolean oldFlintAndSteelBehavior = false;
 
     @Rule(
+            categories = { OPTIMIZATION, CHRONOS }
+    )
+    public static boolean optimizedFallDamageRaycast = false;
+
+    @Rule(
 //            desc = "Display total score on the sidebar",
 //            extra = {"Taken from johan's carpet addons"},
             categories = { SURVIVAL, COMMAND, CHRONOS }
