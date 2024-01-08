@@ -29,7 +29,7 @@
   "carpet.rule.oldFlintAndSteelBehavior.desc": "Backports 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds.",
   "carpet.rule.oldFlintAndSteelBehavior.extra.0": "Taken from johan's carpet addons.",
 
-  "carpet.rule.optimizedEntityRaycast.desc": "Don't raycast for fall damage while the entity is moving upwards.",
+  "carpet.rule.optimizedFallDamageRaycast.desc": "Don't raycast for fall damage while the entity is moving upwards.",
 
   "carpet.rule.totalScore.desc": "Display total score on the sidebar.",
   "carpet.rule.totalScore.extra.0": "Taken from johan's carpet addons.",
