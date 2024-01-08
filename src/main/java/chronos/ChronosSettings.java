@@ -38,6 +38,11 @@ public class ChronosSettings
     public static boolean creativeOneHitKill = false;
 
     @Rule(
+            categories = { OPTIMIZATION, CHRONOS }
+    )
+    public static boolean disableNetherPortalCollisionCheck = false;
+
+    @Rule(
 //            desc = "Allows raids to start within 96 blocks of existing raids.",
 //            extra = {"May be useful for designing raid farms"},
             categories = { CREATIVE, EXPERIMENTAL, CHRONOS}
