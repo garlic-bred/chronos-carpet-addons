@@ -15,6 +15,9 @@
   "carpet.rule.creativeOneHitKill.extra.0": "If the player is sneaking, other entities around the target get killed too.",
   "carpet.rule.creativeOneHitKill.extra.1": "Taken from lunaar carpet addons.",
 
+  "carpet.rule.disableNetherPortalCollisionCheck.desc": "Disable laggy nether portal collision checks introduced in 1.19.3.",
+  "carpet.rule.disableNetherPortalCollisionCheck.extra0": "Large mobs may suffocate when going through portals if you enable this.",
+
   "carpet.rule.ignoreExistingRaids.desc": "Allows raids to start within 96 blocks of existing raids.",
   "carpet.rule.ignoreExistingRaids.extra.0": "May be useful for designing raid farms.",
 
