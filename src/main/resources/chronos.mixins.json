@@ -1,18 +1,19 @@
 {
-	"required": true,
-	"package": "chronos.mixins",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-		"CrashReport_noopMixin",
-		"MixinAbstractBlock",
-		"RaidManagerMixin",
-		"ServerPlayNetworkHandlerMixin",
-		"BlockMixin",
-		"EntityMixin"
-	],
-	"client": [
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "chronos.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BlockMixin",
+    "CrashReport_noopMixin",
+    "EntityMixin",
+    "MixinAbstractBlock",
+    "RaidManagerMixin",
+    "ServerPlayNetworkHandlerMixin",
+    "ThreadedAnvilChunkStorageMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

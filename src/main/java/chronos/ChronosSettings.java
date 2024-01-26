@@ -83,4 +83,11 @@ public class ChronosSettings
     )
     public static boolean scoreboardIgnoresBots = false;
 
+
+    @Rule(
+            desc = "The view distance is a square, like how it was in 1.17 and below.",
+            category = { CHRONOS }
+    )
+    public static boolean squareViewDistance = false;
+
 }
