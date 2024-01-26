@@ -11,10 +11,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EndGatewayBlockEntity.class)
 public class EndGatewayBlockEntityMixin {
-    @Redirect(method="tryTeleportingEntity", at=@At(value="INVOKE", target = "Lnet/minecraft/entity/Entity;resetNetherPortalCooldown()V"))
+    @Redirect(method="tryTeleportingEntity", at=@At(value="INVOKE", target = "Lnet/minecraft/entity/Entity;resetPortalCooldown()V"))
     private static void resetNetherPortalCooldown(Entity entity) {
         if (ChronosSettings.endGatewayCooldown)
-            entity.resetNetherPortalCooldown();
+            entity.resetPortalCooldown();
     }
 
     @Inject(method="needsCooldownBeforeTeleporting", at=@At("RETURN"), cancellable = true)

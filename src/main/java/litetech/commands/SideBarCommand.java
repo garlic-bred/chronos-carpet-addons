@@ -1,6 +1,6 @@
 package litetech.commands;
 
-import carpet.settings.SettingsManager;
+import carpet.utils.CommandHelper;
 import chronos.ChronosSettings;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -12,30 +12,30 @@ import net.minecraft.command.argument.ScoreboardObjectiveArgumentType;
 import net.minecraft.command.argument.ScoreboardSlotArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.scoreboard.ScoreboardDisplaySlot;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 public class SideBarCommand {
     private static final SimpleCommandExceptionType OBJECTIVES_DISPLAY_ALREADY_SET_EXCEPTION = new SimpleCommandExceptionType(
-            new TranslatableText("commands.scoreboard.objectives.display.alreadySet"));
+            Text.translatable("commands.scoreboard.objectives.display.alreadySet"));
     private static final Dynamic2CommandExceptionType PLAYERS_GET_NULL_EXCEPTION = new Dynamic2CommandExceptionType(
-            (object, object2) -> new TranslatableText("commands.scoreboard.players.get.null", object, object2));
+            (object, object2) -> Text.translatable("commands.scoreboard.players.get.null", object, object2));
 
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(
                 CommandManager.literal("sidebar")
-                        .requires(player -> SettingsManager.canUseCommand(player, ChronosSettings.commandSidebar))
+                        .requires(player -> CommandHelper.canUseCommand(player, ChronosSettings.commandSidebar))
                         .then(CommandManager.literal("show")
                                 .then(CommandManager.argument("objective", ScoreboardObjectiveArgumentType.scoreboardObjective())
                                         .executes(context -> executeSetDisplay(
                                                 context.getSource(),
                                                 ScoreboardObjectiveArgumentType.getObjective(context, "objective"),
-                                                1
+                                                null
                                         ))
                                         .then(CommandManager.argument("slot", ScoreboardSlotArgumentType.scoreboardSlot())
                                                 .executes(context -> executeSetDisplay(
@@ -61,9 +61,8 @@ public class SideBarCommand {
                                                     context, "objective");
 
                                             ((ScoreboardObjectiveHelper) objective).setFrozen(true);
-                                            context.getSource().sendFeedback(new LiteralText(
-                                                    "Froze scores for objective: " + objective.getName()),
-                                                    true);
+                                            context.getSource().sendMessage(Text.literal(
+                                                    "Froze scores for objective: " + objective.getName()));
                                             return 0;
                                         })))
                         .then(CommandManager.literal("unfreeze")
@@ -74,9 +73,8 @@ public class SideBarCommand {
                                                     context, "objective");
 
                                             ((ScoreboardObjectiveHelper) objective).setFrozen(false);
-                                            context.getSource().sendFeedback(new LiteralText(
-                                                    "Unfroze scores for objective: " + objective.getName()),
-                                                    true);
+                                            context.getSource().sendMessage(Text.literal(
+                                                    "Unfroze scores for objective: " + objective.getName()));
                                             return 0;
                                         })))
 
@@ -85,22 +83,22 @@ public class SideBarCommand {
 
     private static int executeClearDisplay(ServerCommandSource source) throws CommandSyntaxException {
         Scoreboard scoreboard = source.getServer().getScoreboard();
-        if (scoreboard.getObjectiveForSlot(1) == null) {
+        if (scoreboard.getObjectiveForSlot(null) == null) {
             throw OBJECTIVES_DISPLAY_ALREADY_SET_EXCEPTION.create();
         } else {
-            scoreboard.setObjectiveSlot(1, (ScoreboardObjective) null);
-            source.sendFeedback(new TranslatableText("commands.scoreboard.objectives.display.cleared", Scoreboard.getDisplaySlotNames()[1]), false);
+            scoreboard.setObjectiveSlot(null, (ScoreboardObjective) null);
+            source.sendMessage(Text.translatable("commands.scoreboard.objectives.display.cleared"));
             return 0;
         }
     }
 
-    private static int executeSetDisplay(ServerCommandSource source, ScoreboardObjective objective, int slot) throws CommandSyntaxException {
+    private static int executeSetDisplay(ServerCommandSource source, ScoreboardObjective objective, ScoreboardDisplaySlot slot) throws CommandSyntaxException {
         Scoreboard scoreboard = source.getServer().getScoreboard();
         if (scoreboard.getObjectiveForSlot(slot) == objective) {
             throw OBJECTIVES_DISPLAY_ALREADY_SET_EXCEPTION.create();
         } else {
             scoreboard.setObjectiveSlot(slot, objective);
-            source.sendFeedback(new TranslatableText("commands.scoreboard.objectives.display.set", Scoreboard.getDisplaySlotNames()[1], objective.getDisplayName()), false);
+            source.sendMessage(Text.translatable("commands.scoreboard.objectives.display.set", objective.getDisplayName(), objective.getDisplayName()));
             return 0;
         }
     }
@@ -111,7 +109,7 @@ public class SideBarCommand {
             throw PLAYERS_GET_NULL_EXCEPTION.create(objective.getName(), player.getDisplayName().getString());
         } else {
             ScoreboardPlayerScore scoreboardPlayerScore = scoreboard.getPlayerScore(player.getDisplayName().getString(), objective);
-            source.sendFeedback(new TranslatableText("commands.scoreboard.players.get.success", player.getDisplayName().getString(), scoreboardPlayerScore.getScore(), objective.toHoverableText()), false);
+            source.sendMessage(Text.translatable("commands.scoreboard.players.get.success", player.getDisplayName().getString(), scoreboardPlayerScore.getScore(), objective.toHoverableText()));
             return scoreboardPlayerScore.getScore();
         }
     }

@@ -8,6 +8,8 @@
 		"RaidManagerMixin",
 		"ServerPlayNetworkHandlerMixin",
 		"BlockMixin",
+		"NetherPortalMixin",
+		"BlockMixin",
 		"EntityMixin"
 	],
 	"client": [

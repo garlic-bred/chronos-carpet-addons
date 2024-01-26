@@ -16,8 +16,8 @@ public class EntityMixin {
 
     @Redirect(method = "move", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;raycast(Lnet/minecraft/world/RaycastContext;)Lnet/minecraft/util/hit/BlockHitResult;"))
     private BlockHitResult cancelRaycast(World instance, RaycastContext raycastContext) {
-        if (raycastContext.getStart().y < raycastContext.getEnd().y && ChronosSettings.optimizedEntityRaycast) {
-            return BlockHitResult.createMissed(raycastContext.getEnd(), Direction.getFacing(raycastContext.getStart().x, raycastContext.getStart().y, raycastContext.getStart().z), new BlockPos(raycastContext.getEnd()));
+        if (raycastContext.getStart().y < raycastContext.getEnd().y && ChronosSettings.optimizedFallDamageRaycast) {
+            return BlockHitResult.createMissed(raycastContext.getEnd(), Direction.getFacing(raycastContext.getStart().x, raycastContext.getStart().y, raycastContext.getStart().z), BlockPos.ofFloored(raycastContext.getEnd()));
         } else {
             return instance.raycast(raycastContext);
         }
