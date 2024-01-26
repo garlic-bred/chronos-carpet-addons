@@ -14,18 +14,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ServerPlayNetworkHandler.class)
 public abstract class ServerPlayNetworkHandlerMixin {
 
-    @Shadow public ServerPlayerEntity player;
-
-    @Inject(method = "onPlayerAction", at = @At("HEAD"))
-    public void startCapturingDrops(PlayerActionC2SPacket packet, CallbackInfo ci) {
-        if (ChronosSettings.betterCarefulBreak && player.isSneaking()) {
-            CapturedDrops.startCapturing(player);
-        }
-    }
-
-    @Inject(method = "onPlayerAction", at = @At("RETURN"))
-    public void stopCapturingDrops(PlayerActionC2SPacket packet, CallbackInfo ci) {
-        CapturedDrops.clear();
-    }
+//    @Shadow public ServerPlayerEntity player;
+//
+//    @Inject(method = "onPlayerAction", at = @At("HEAD"))
+//    public void startCapturingDrops(PlayerActionC2SPacket packet, CallbackInfo ci) {
+//        if (ChronosSettings.betterCarefulBreak && player.isSneaking()) {
+//            CapturedDrops.startCapturing(player);
+//        }
+//    }
+//
+//    @Inject(method = "onPlayerAction", at = @At("RETURN"))
+//    public void stopCapturingDrops(PlayerActionC2SPacket packet, CallbackInfo ci) {
+//        CapturedDrops.clear();
+//    }
 
 }

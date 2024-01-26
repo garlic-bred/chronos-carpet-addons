@@ -47,7 +47,7 @@ public class ChronosExtension implements CarpetExtension, ModInitializer {
     @Override
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher, final CommandRegistryAccess commandBuildContext)
     {
-        SideBarCommand.register(dispatcher);
+//        SideBarCommand.register(dispatcher);
         TotalCommand.register(dispatcher);
     }
 

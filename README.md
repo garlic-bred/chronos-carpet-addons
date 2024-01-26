@@ -4,18 +4,6 @@ A carpet mod addon made for the [Chronos SMP](https://discord.gg/VvPucVAjUS). It
 
 ## Rules
 
-### betterCarefulBreak
-If you break a block while sneaking then the block gets put in your inventory. Any blocks supported by that block that get broken instantly will also be put in your inventory.
-* Type: `boolean`
-* Default value: `false`
-* Categories: `SURVIVAL`, `EXPERIMENTAL`, `CHRONOS`
-
-### commandSidebar
-Enables players without OP to change what objective is being displayed, and query a player's objectives. Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing. Taken from litetech carpet addons.
-* Type: `boolean`
-* Default value: `false`
-* Categories: `SURVIVAL`, `COMMAND`, `CHRONOS`
-
 ### commandTotal
 Enables /total command to know the total sum of a scoreboard. Taken from johan's carpet addons.
 * Type: `boolean`
@@ -27,6 +15,12 @@ Allows players in Creative mode to kill entities in one hit. If the player is sn
 * Type: `boolean`
 * Default value: `false`
 * Categories: `CREATIVE`, `CHRONOS`
+
+### disableNetherPortalCollisionCheck
+Disable laggy nether portal collision checks introduced in 1.19.3. Large mobs may suffocate in nether portals if this is enabled.
+* Type: `boolean`
+* Default value: `false`
+* Categories: `OPTIMIZATION`, `CHRONOS`
 
 ### ignoreExistingRaids
 Allows raids to start within 96 blocks of existing raids. May be useful for designing raid farms.
@@ -52,6 +46,12 @@ Backports 1.12 flint and steel behavior. Flint and steel can be used for updatin
 * Default value: `false`
 * Categories: `CREATIVE`, `CHRONOS`
 
+### optimizedFallDamageRaycast
+Don't raycast for fall damage when the entity is moving upwards.
+* Type: `boolean`
+* Default value: `false`
+* Categories: `OPTIMIZATION`, `CHRONOS`
+
 ### totalScore
 Display total score on the sidebar. Taken from johan's carpet addons.
 * Type: `boolean`
@@ -59,7 +59,7 @@ Display total score on the sidebar. Taken from johan's carpet addons.
 * Categories: `SURVIVAL`, `CHRONOS`
 
 ### scoreboardIgnoresBots
-Bots don't appear on scoreboards and do not count in the total if they're not in a team. Real players need to be in a team! Taken from lunaar carpet addons. Based on code by JohanVonElectrum. 
+Bots don't appear on scoreboards and do not count in the total if they're not in a team. Real players need to be in a team! Taken from lunaar carpet addons. Based on code by JohanVonElectrum.
 * Type: `boolean`
 * Default value: `false`
 * Categories: `SURVIVAL`, `CHRONOS`
