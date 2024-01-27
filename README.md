@@ -46,6 +46,12 @@ Backports 1.12 flint and steel behavior. Flint and steel can be used for updatin
 * Default value: `false`
 * Categories: `CREATIVE`, `CHRONOS`
 
+### playerSit
+The player will sit down after 3 quick sneaks. Taken from plusls carped addons.
+* Type: `boolean`
+* Default value: `false`
+* Categories: `CHRONOS`
+
 ### optimizedFallDamageRaycast
 Don't raycast for fall damage when the entity is moving upwards.
 * Type: `boolean`
