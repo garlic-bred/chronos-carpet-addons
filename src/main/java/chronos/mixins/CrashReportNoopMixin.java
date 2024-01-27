@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CrashReport.class)
-public class CrashReport_noopMixin
+public class CrashReportNoopMixin
 {
     /*
     This mixins sole purpose is to get the extension classes loaded in the appropriate moment

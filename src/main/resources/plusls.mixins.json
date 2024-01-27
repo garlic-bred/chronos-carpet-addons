@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "plusls.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "ServerPlayerEntityMixin",
+    "ArmorStandEntityMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

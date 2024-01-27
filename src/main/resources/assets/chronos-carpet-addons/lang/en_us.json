@@ -31,6 +31,9 @@
 
   "carpet.rule.optimizedFallDamageRaycast.desc": "Don't raycast for fall damage while the entity is moving upwards.",
 
+  "carpet.rule.playerSit.desc": "The player will sit down after 3 quick sneaks.",
+  "carpet.rule.playerSit.extra0": "Taken from plusls carped addons.",
+
   "carpet.rule.totalScore.desc": "Display total score on the sidebar.",
   "carpet.rule.totalScore.extra.0": "Taken from johan's carpet addons.",
 

@@ -8,6 +8,8 @@ public class ChronosSettings
 {
     private static final String CHRONOS = "chronos";
 
+    public static boolean betterCarefulBreak = false;
+
     @Rule(categories = { SURVIVAL, COMMAND, CHRONOS })
     public static boolean commandTotal = false;
 
@@ -31,6 +33,9 @@ public class ChronosSettings
 
     @Rule(categories = { OPTIMIZATION, CHRONOS })
     public static boolean optimizedFallDamageRaycast = false;
+
+    @Rule(categories = { CHRONOS })
+    public static boolean playerSit = false;
 
     @Rule(categories = { SURVIVAL, COMMAND, CHRONOS })
     public static boolean totalScore = false;
