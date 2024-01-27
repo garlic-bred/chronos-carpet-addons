@@ -24,6 +24,8 @@
   "carpet.rule.endGatewayCooldown.desc": "Toggle for end gateway cooldown.",
   "carpet.rule.endGatewayCooldown.extra.0": "Taken from johan's carpet addons.",
 
+  "carpet.rule.fakePlayerFallDamage.desc": "Toggle whether fake players take fall damage or not.",
+
   "carpet.rule.netheritePickaxeInstantMineDeepslate.desc": "Deepslate can be instant mined with netherite pickaxe and haste II.",
 
   "carpet.rule.oldFlintAndSteelBehavior.desc": "Backports 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds.",

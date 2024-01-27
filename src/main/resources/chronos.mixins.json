@@ -10,7 +10,8 @@
 		"BlockMixin",
 		"NetherPortalMixin",
 		"BlockMixin",
-		"EntityMixin"
+		"EntityMixin",
+		"carpet.EntityPlayerMPFakeMixin"
 	],
 	"client": [
 	],

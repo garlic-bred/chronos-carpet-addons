@@ -25,6 +25,9 @@ public class ChronosSettings
     @Rule(categories = { SURVIVAL, CHRONOS })
     public static boolean endGatewayCooldown = true;
 
+    @Rule(categories = { CREATIVE, CHRONOS })
+    public static boolean fakePlayerFallDamage = true;
+
     @Rule(categories = { SURVIVAL, CHRONOS })
     public static boolean netheritePickaxeInstantMineDeepslate = false;
 

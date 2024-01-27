@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
@@ -27,15 +28,6 @@ public class BlockMixin {
     private static void captureDrops(World world, Supplier<ItemEntity> itemEntitySupplier, ItemStack stack, CallbackInfo ci) {
         StackTraceElement[] trace = Thread.currentThread().getStackTrace();
         boolean fromPlayerAction = false;
-        for (StackTraceElement element : trace) {
-//            try {
-//                CapturedDrops.getPlayer().sendSystemMessage(new LiteralText(element.getClassName()), Util.NIL_UUID);
-//            } catch (Exception e) { /* ignore exception */ }
-            if (element.getClassName().equals("net.minecraft.class_3225")) {
-                fromPlayerAction = true;
-                break;
-            }
-        }
         if (fromPlayerAction && CapturedDrops.isCapturing() && CapturedDrops.getPlayer().getWorld().getServer().isOnThread()) {
             if (CapturedDrops.capture(stack)) {
                 PlayerEntity player = CapturedDrops.getPlayer();
