@@ -2,6 +2,7 @@ package plusls.mixins;
 
 import chronos.ChronosSettings;
 import com.mojang.authlib.GameProfile;
+import net.minecraft.util.math.EulerAngle;
 import plusls.util.SitEntity;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,8 +42,9 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
                 sneakTimes += 1;
                 if (sneakTimes == 3) {
                     World world = super.getWorld();
-                    ArmorStandEntity armorStandEntity = new ArmorStandEntity(world, this.getX(), this.getY() - 0.16, this.getZ());
+                    ArmorStandEntity armorStandEntity = new ArmorStandEntity(world, this.getX(), this.getY(), this.getZ());
                     ((SitEntity) armorStandEntity).setSitEntity(true);
+                    armorStandEntity.setYaw(this.getRotationClient().y);
                     world.spawnEntity(armorStandEntity);
                     this.setSneaking(false);
                     this.startRiding(armorStandEntity);
