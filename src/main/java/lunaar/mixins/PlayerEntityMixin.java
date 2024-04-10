@@ -4,6 +4,9 @@ import chronos.ChronosSettings;
 import lunaar.mixins.accessors.EntityAccessorMixin;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.dragon.EnderDragonPart;
+import net.minecraft.entity.decoration.AbstractDecorationEntity;
+import net.minecraft.entity.decoration.ArmorStandEntity;
+import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.predicate.entity.EntityPredicates;
@@ -60,7 +63,7 @@ public abstract class PlayerEntityMixin
             if (this.invokerIsSneaking()) {
                 this.accessorGetWorld().getNonSpectatingEntities(Entity.class,
                                 target.getBoundingBox().expand(2.0D, 0.50D, 2.0D)).stream()
-                        .filter(entity -> entity.isAttackable() && EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(entity))
+                        .filter(entity -> entity.isAttackable() && !(entity instanceof AbstractDecorationEntity) && !(entity instanceof ArmorStandEntity) && EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(entity))
                         .forEach(instaKill);
                 this.accessorGetWorld().playSound(null, this.invokerGetX(), this.invokerGetY(), this.invokerGetZ(),
                         SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, this.getSoundCategory(), 1.0F, 1.0F);
