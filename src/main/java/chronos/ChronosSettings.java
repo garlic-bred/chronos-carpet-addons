@@ -8,8 +8,6 @@ public class ChronosSettings
 {
     private static final String CHRONOS = "chronos";
 
-    public static boolean betterCarefulBreak = false;
-
     @Rule(categories = { SURVIVAL, COMMAND, CHRONOS })
     public static boolean commandTotal = false;
 
@@ -27,6 +25,9 @@ public class ChronosSettings
 
     @Rule(categories = { CREATIVE, CHRONOS })
     public static boolean fakePlayerFallDamage = true;
+
+    @Rule(categories = { CREATIVE, CHRONOS })
+    public static double maxBlockReachDistance = 6.0;
 
     @Rule(categories = { SURVIVAL, CHRONOS })
     public static boolean netheritePickaxeInstantMineDeepslate = false;
