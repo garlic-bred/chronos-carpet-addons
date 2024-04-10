@@ -3,14 +3,13 @@
 	"package": "chronos.mixins",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-      "CrashReportNoopMixin",
 		"AbstractBlockMixin",
-		"RaidManagerMixin",
-		"ServerPlayNetworkHandlerMixin",
-		"BlockMixin",
-		"NetherPortalMixin",
-		"BlockMixin",
+		"CrashReportNoopMixin",
 		"EntityMixin",
+		"NetherPortalMixin",
+		"RaidManagerMixin",
+		"ServerPlayerInteractionManagerMixin",
+		"ServerPlayNetworkHandlerMixin",
 		"carpet.EntityPlayerMPFakeMixin"
 	],
 	"client": [
