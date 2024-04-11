@@ -91,3 +91,5 @@ Bots don't appear on scoreboards and do not count in the total if they're not in
 ## License
 
 This mod is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+
+Parts of this project have been taken from [plusls-carpet-addition](https://github.com/plusls/plusls-carpet-addition), [lunaar-carpet-addons](https://github.com/Lunaar-SMP/lunaar-carpet-addons), [Johan-Carpet](https://github.com/JohanVonElectrum/Johan-Carpet), [litetech-additions](https://github.com/LiteTechMC/litetech-additions). The code taken from each project is stored under its respective folder in src/main/java.
