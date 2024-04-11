@@ -1,20 +1,22 @@
 {
-	"required": true,
-	"package": "chronos.mixins",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-		"AbstractBlockMixin",
-		"CrashReportNoopMixin",
-		"EntityMixin",
-		"NetherPortalMixin",
-		"RaidManagerMixin",
-		"ServerPlayerInteractionManagerMixin",
-		"ServerPlayNetworkHandlerMixin",
-		"carpet.EntityPlayerMPFakeMixin"
-	],
-	"client": [
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "chronos.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AbstractBlockMixin",
+    "CrashReportNoopMixin",
+    "EntityMixin",
+    "NetherPortalMixin",
+    "RaidManagerMixin",
+    "ScoreboardMixin",
+    "ServerPlayerInteractionManagerMixin",
+    "ServerPlayNetworkHandlerMixin",
+    "carpet.EntityPlayerMPFakeMixin",
+    "invoker.ScoresInvoker"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

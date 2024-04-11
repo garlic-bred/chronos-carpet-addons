@@ -1,14 +1,16 @@
 package johan.mixins;
 
 import carpet.CarpetServer;
+import chronos.ChronosExtension;
 import chronos.ChronosSettings;
 import com.google.common.collect.Lists;
 import johan.commands.TotalCommand;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.ScoreboardDisplayS2CPacket;
 import net.minecraft.network.packet.s2c.play.ScoreboardObjectiveUpdateS2CPacket;
-import net.minecraft.network.packet.s2c.play.ScoreboardPlayerUpdateS2CPacket;
+import net.minecraft.network.packet.s2c.play.ScoreboardScoreUpdateS2CPacket;
 import net.minecraft.scoreboard.*;
+import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -27,13 +29,12 @@ public abstract class ServerScoreboardMixin extends Scoreboard {
     @Shadow @Final private Set<ScoreboardObjective> objectives;
 
     @Inject(method = "updateScore", at = @At("HEAD"), cancellable = true)
-    public void updateScore(ScoreboardPlayerScore score, CallbackInfo ci) {
-        if (ChronosSettings.scoreboardIgnoresBots && score.getScoreboard().getPlayerTeam(score.getPlayerName()) == null)
+    public void updateScore(ScoreHolder scoreHolder, ScoreboardObjective objective, ScoreboardScore score, CallbackInfo ci) {
+        if (ChronosSettings.scoreboardIgnoresBots && objective.getScoreboard().getScoreHolderTeam(scoreHolder.getNameForScoreboard()) == null)
             ci.cancel();
         else {
-            ScoreboardObjective objective = score.getObjective();
             if (objective != null && ChronosSettings.totalScore)
-                CarpetServer.minecraft_server.getPlayerManager().sendToAll(createPacket(objective));
+                CarpetServer.minecraft_server.getPlayerManager().sendToAll(createTotalPacket(objective));
         }
     }
 
@@ -41,8 +42,6 @@ public abstract class ServerScoreboardMixin extends Scoreboard {
     public void createChangePackets(ScoreboardObjective objective, CallbackInfoReturnable<List<Packet<?>>> cir) {
         List<Packet<?>> list = Lists.newArrayList();
         list.add(new ScoreboardObjectiveUpdateS2CPacket(objective, 0));
-        if (ChronosSettings.totalScore)
-            list.add(createPacket(objective));
 
         ScoreboardDisplaySlot[] var3 = ScoreboardDisplaySlot.values();
         int var4 = var3.length;
@@ -54,19 +53,23 @@ public abstract class ServerScoreboardMixin extends Scoreboard {
             }
         }
 
-        Iterator playerScoreIter = this.getAllPlayerScores(objective).iterator();
+        if (ChronosSettings.totalScore)
+            list.add(createTotalPacket(objective));
+
+        Iterator<ScoreboardEntry> playerScoreIter = this.getScoreboardEntries(objective).iterator();
 
         while(playerScoreIter.hasNext()) {
-            ScoreboardPlayerScore scoreboardPlayerScore = (ScoreboardPlayerScore) playerScoreIter.next();
-            if (!ChronosSettings.scoreboardIgnoresBots || scoreboardPlayerScore.getScoreboard().getPlayerTeam(scoreboardPlayerScore.getPlayerName()) != null)
-                list.add(new ScoreboardPlayerUpdateS2CPacket(ServerScoreboard.UpdateMode.CHANGE, scoreboardPlayerScore.getObjective().getName(), scoreboardPlayerScore.getPlayerName(), scoreboardPlayerScore.getScore()));
+            ScoreboardEntry entry = playerScoreIter.next();
+            if (!ChronosSettings.scoreboardIgnoresBots || objective.getScoreboard().getScoreHolderTeam(entry.owner()) != null)
+                list.add(new ScoreboardScoreUpdateS2CPacket(entry.owner(), objective.getName(), entry.value(), entry.display(), entry.numberFormatOverride()));
         }
 
         cir.setReturnValue(list);
     }
 
-    private ScoreboardPlayerUpdateS2CPacket createPacket(ScoreboardObjective objective) {
-        return new ScoreboardPlayerUpdateS2CPacket(ServerScoreboard.UpdateMode.CHANGE, objective.getName(), "Total", TotalCommand.getTotal(CarpetServer.minecraft_server.getCommandSource(), objective, !ChronosSettings.scoreboardIgnoresBots));
+    private ScoreboardScoreUpdateS2CPacket createTotalPacket(ScoreboardObjective objective) {
+        ChronosExtension.LOGGER.info("total packet: " + objective.getName() + objective.getDisplayName());
+        return new ScoreboardScoreUpdateS2CPacket("Total", objective.getName(), TotalCommand.getTotal(CarpetServer.minecraft_server.getCommandSource(), objective, !ChronosSettings.scoreboardIgnoresBots), Text.literal("Total"), objective.getNumberFormat());
     }
 
 }

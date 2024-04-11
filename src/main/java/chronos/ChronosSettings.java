@@ -9,6 +9,9 @@ public class ChronosSettings
     private static final String CHRONOS = "chronos";
 
     @Rule(categories = { SURVIVAL, COMMAND, CHRONOS })
+    public static boolean commandSidebar = true;
+
+    @Rule(categories = { SURVIVAL, COMMAND, CHRONOS })
     public static boolean commandTotal = false;
 
     @Rule(categories = { CREATIVE, CHRONOS })
