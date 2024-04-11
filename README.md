@@ -4,6 +4,12 @@ A carpet mod addon made for the [Chronos SMP](https://discord.gg/VvPucVAjUS). It
 
 ## Rules
 
+### commandSidebar
+Enables players without OP to change what objective is being displayed, and query a player's objectives. Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing. Taken from litetech carpet addons.
+* Type: `boolean`
+* Default value: `false`
+* Categories: `SURVIVAL`, `COMMAND`, `CHRONOS`
+
 ### commandTotal
 Enables /total command to know the total sum of a scoreboard. Taken from johan's carpet addons.
 * Type: `boolean`
@@ -33,6 +39,18 @@ Toggle for end gateway cooldown. Taken from johan's carpet addons.
 * Type: `boolean`
 * Default value: `false`
 * Categories: `SURVIVAL`, `CHRONOS`
+
+### fakePlayerFallDamage
+Toggle whether fake players take fall damage or not.
+* Type: `boolean`
+* Default value: `true`
+* Categories: `CREATIVE`, `CHRONOS`
+
+### maxBlockReachDistance
+How far the player can interact with blocks. Requires a modded client to reach farther than what is allowed in vanilla.
+* Type: `double`
+* Default value: `6.0`
+* Categories: `CREATIVE`, `CHRONOS`
 
 ### netheritePickaxeInstantMineDeepslate
 Deepslate can be instant mined with netherite pickaxe and haste II.
