@@ -1,6 +1,8 @@
 {
   "carpet.category.chronos": "chronos",
 
+  "carpet.rule.armorStandItemFromExplosion.desc": "Armor stand drops it's item if killed by an explosion.",
+
   "carpet.rule.betterCarefulBreak.desc": "If you break a block while sneaking then the block gets put in your inventory.",
   "carpet.rule.betterCarefulBreak.extra0": "Any blocks supported by that block that get broken instantly will also be put in your inventory.",
 

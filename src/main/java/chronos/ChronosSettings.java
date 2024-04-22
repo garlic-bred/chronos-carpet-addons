@@ -8,6 +8,9 @@ public class ChronosSettings
 {
     private static final String CHRONOS = "chronos";
 
+    @Rule(categories = { CHRONOS })
+    public static boolean armorStandItemFromExplosion = false;
+
     @Rule(categories = { SURVIVAL, COMMAND, CHRONOS })
     public static boolean commandSidebar = false;
 
