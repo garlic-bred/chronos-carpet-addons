@@ -11,10 +11,7 @@ import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.command.argument.ScoreboardObjectiveArgumentType;
 import net.minecraft.command.argument.ScoreboardSlotArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.scoreboard.Scoreboard;
-import net.minecraft.scoreboard.ScoreboardDisplaySlot;
-import net.minecraft.scoreboard.ScoreboardObjective;
-import net.minecraft.scoreboard.ScoreboardPlayerScore;
+import net.minecraft.scoreboard.*;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
@@ -105,12 +102,13 @@ public class SideBarCommand {
 
     private static int executeGet(ServerCommandSource source, PlayerEntity player, ScoreboardObjective objective) throws CommandSyntaxException {
         Scoreboard scoreboard = source.getServer().getScoreboard();
-        if (!scoreboard.playerHasObjective(player.getDisplayName().getString(), objective)) {
+        ScoreHolder holder = ScoreHolder.fromName(player.getDisplayName().getString());
+        if (scoreboard.getScore(holder, objective) == null)
             throw PLAYERS_GET_NULL_EXCEPTION.create(objective.getName(), player.getDisplayName().getString());
-        } else {
-            ScoreboardPlayerScore scoreboardPlayerScore = scoreboard.getPlayerScore(player.getDisplayName().getString(), objective);
-            source.sendMessage(Text.translatable("commands.scoreboard.players.get.success", player.getDisplayName().getString(), scoreboardPlayerScore.getScore(), objective.toHoverableText()));
-            return scoreboardPlayerScore.getScore();
+        else {
+            int score = scoreboard.getScore(holder, objective).getScore();
+            source.sendMessage(Text.translatable("commands.scoreboard.players.get.success", player.getDisplayName().getString(), score, objective.toHoverableText()));
+            return score;
         }
     }
 }
