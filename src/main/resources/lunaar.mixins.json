@@ -3,9 +3,8 @@
   "package": "lunaar.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "accessors.EntityAccessorMixin",
-    "ScoreboardPlayerScoreMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "accessors.EntityAccessorMixin"
   ],
   "client": [
   ],

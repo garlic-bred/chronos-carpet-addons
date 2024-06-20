@@ -14,6 +14,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +23,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 public class ChronosExtension implements CarpetExtension, ModInitializer {
+
+    public static final Logger LOGGER = LoggerFactory.getLogger("chronos-carpet");
+
     public static void noop() { }
     static
     {
@@ -30,7 +35,7 @@ public class ChronosExtension implements CarpetExtension, ModInitializer {
     @Override
     public void onGameStarted()
     {
-        System.out.println("Initializing Chronos Carpet Extension");
+        LOGGER.info("Initializing Chronos Carpet Extension");
         CarpetServer.settingsManager.parseSettingsClass(ChronosSettings.class);
     }
 
@@ -47,7 +52,7 @@ public class ChronosExtension implements CarpetExtension, ModInitializer {
     @Override
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher, final CommandRegistryAccess commandBuildContext)
     {
-//        SideBarCommand.register(dispatcher);
+        SideBarCommand.register(dispatcher);
         TotalCommand.register(dispatcher);
     }
 

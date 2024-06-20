@@ -5,14 +5,15 @@
   "mixins": [
     "AbstractBlockMixin",
     "ArmorStandMixin",
-    "BlocksMixin",
     "CrashReportNoopMixin",
     "EntityMixin",
     "NetherPortalMixin",
     "RaidManagerMixin",
+    "ScoreboardMixin",
     "ServerPlayerInteractionManagerMixin",
     "ServerPlayNetworkHandlerMixin",
-    "carpet.EntityPlayerMPFakeMixin"
+    "carpet.EntityPlayerMPFakeMixin",
+    "invoker.ScoresInvoker"
   ],
   "client": [
   ],

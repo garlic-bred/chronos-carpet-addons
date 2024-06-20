@@ -4,9 +4,10 @@
   "package": "johan.mixins",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "ServerScoreboardMixin",
+    "AbstractFireBlockMixin",
     "EndGatewayBlockEntityMixin",
-    "AbstractFireBlockMixin"
+    "EndGatewayBlockMixin",
+    "ServerScoreboardMixin"
   ],
   "injectors": {
     "defaultRequire": 1
