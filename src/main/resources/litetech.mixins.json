@@ -5,8 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "objective.ScoreboardMixin",
-    "objective.ScoreboardObjectiveMixin",
-    "objective.ScoreboardPlayerScoreMixin"
+    "objective.ScoreboardObjectiveMixin"
   ],
   "injectors": {
     "defaultRequire": 1
