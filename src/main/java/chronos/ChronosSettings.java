@@ -9,16 +9,19 @@ public class ChronosSettings
     private static final String CHRONOS = "chronos";
 
     @Rule(categories = { CHRONOS })
-    public static boolean armorStandItemFromExplosion = false;
-
-    @Rule(categories = { SURVIVAL, COMMAND, CHRONOS })
-    public static boolean commandSidebar = false;
+    public static boolean armorStandDropsItemFromExplosion = false;
 
     @Rule(categories = { SURVIVAL, COMMAND, CHRONOS })
     public static boolean commandTotal = false;
 
     @Rule(categories = { CREATIVE, CHRONOS })
     public static boolean creativeOneHitKill = false;
+
+    @Rule(categories = { CREATIVE, CHRONOS })
+    public static boolean disableEnderPearlTeleportation = false;
+
+    @Rule(categories = { CREATIVE, CHRONOS })
+    public static boolean disarmTntWithShears = false;
 
     @Rule(categories = { OPTIMIZATION, CHRONOS })
     public static boolean disableNetherPortalCollisionCheck = false;
@@ -29,20 +32,11 @@ public class ChronosSettings
     @Rule(categories = { SURVIVAL, CHRONOS })
     public static boolean endGatewayCooldown = true;
 
-    @Rule(categories = { CREATIVE, CHRONOS })
-    public static boolean fakePlayerFallDamage = true;
-
-    @Rule(categories = { CREATIVE, CHRONOS })
-    public static double maxBlockReachDistance = 6.0;
-
     @Rule(categories = { SURVIVAL, CHRONOS })
     public static boolean netheritePickaxeInstantMineDeepslate = false;
 
     @Rule(categories = { CREATIVE, CHRONOS })
     public static boolean oldFlintAndSteelBehavior = false;
-
-    @Rule(categories = { OPTIMIZATION, CHRONOS })
-    public static boolean optimizedFallDamageRaycast = false;
 
     @Rule(categories = { CHRONOS })
     public static boolean playerSit = false;

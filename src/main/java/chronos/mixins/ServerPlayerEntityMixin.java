@@ -1,9 +1,8 @@
-package plusls.mixins;
+package chronos.mixins;
 
 import chronos.ChronosSettings;
 import com.mojang.authlib.GameProfile;
-import net.minecraft.util.math.EulerAngle;
-import plusls.util.SitEntity;
+import chronos.util.SitEntity;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.packet.s2c.play.EntityTrackerUpdateS2CPacket;

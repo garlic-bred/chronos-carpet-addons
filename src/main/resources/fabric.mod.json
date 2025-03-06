@@ -22,15 +22,11 @@
 		]
 	},
 	"mixins": [
-		"chronos.mixins.json",
-		"litetech.mixins.json",
-		"lunaar.mixins.json",
-		"johan.mixins.json",
-		"plusls.mixins.json"
+		"chronos.mixins.json"
 	],
 
 	"depends": {
-		"minecraft": "1.20.2",
+		"minecraft": ">=1.21.4",
 		"fabricloader": ">=0.15.2",
 		"carpet": "*"
 	},

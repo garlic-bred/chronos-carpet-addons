@@ -1,15 +1,15 @@
-package lunaar.mixins;
+package chronos.mixins;
 
 import chronos.ChronosSettings;
-import lunaar.mixins.accessors.EntityAccessorMixin;
+import chronos.mixins.accessors.EntityAccessorMixin;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.dragon.EnderDragonPart;
 import net.minecraft.entity.decoration.AbstractDecorationEntity;
 import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import org.spongepowered.asm.mixin.Final;
@@ -23,37 +23,27 @@ import java.util.Arrays;
 import java.util.function.Consumer;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin
-        implements EntityAccessorMixin
-{
+public abstract class PlayerEntityMixin implements EntityAccessorMixin {
     @Shadow
     @Final
-    public PlayerAbilities abilities;
+    private PlayerAbilities abilities;
 
     @Shadow
     public abstract SoundCategory getSoundCategory();
 
-    @Inject(
-            method = "attack",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/entity/Entity;handleAttack(Lnet/minecraft/entity/Entity;)Z",
-                    shift = At.Shift.BY,
-                    by = -2
-            ),
-            cancellable = true
-    )
+    @Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;handleAttack(Lnet/minecraft/entity/Entity;)Z", shift = At.Shift.BY, by = -2), cancellable = true)
     public void creativeKill(Entity target, CallbackInfo ci) {
         if (ChronosSettings.creativeOneHitKill
                 && !this.accessorGetWorld().isClient // this is to prevent a bug with ender dragons
                 && this.abilities.creativeMode
                 && EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(target)) {
+            ServerWorld world = (ServerWorld) target.getWorld();
             Consumer<Entity> instaKill = (target2) -> {
                 if (target2 instanceof EnderDragonPart) {
-                    Arrays.stream(((EnderDragonPart) target2).owner.getBodyParts()).forEach(Entity::kill);
-                    ((EnderDragonPart) target2).owner.kill();
+                    Arrays.stream(((EnderDragonPart) target2).owner.getBodyParts()).forEach(e -> e.kill(world));
+                    ((EnderDragonPart) target2).owner.kill(world);
                 } else {
-                    target2.kill();
+                    target2.kill(world);
                 }
             };
 

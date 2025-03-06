@@ -4,11 +4,11 @@ A carpet mod addon made for the [Chronos SMP](https://discord.gg/VvPucVAjUS). It
 
 ## Rules
 
-### commandSidebar
-Enables players without OP to change what objective is being displayed, and query a player's objectives. Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing. Taken from litetech carpet addons.
+### armorStandDropItemFromExplosion
+Armor stand drops it's item if killed by an explosion.
 * Type: `boolean`
 * Default value: `false`
-* Categories: `SURVIVAL`, `COMMAND`, `CHRONOS`
+* Categories: `CHRONOS`
 
 ### commandTotal
 Enables /total command to know the total sum of a scoreboard. Taken from johan's carpet addons.
@@ -54,6 +54,7 @@ How far the player can interact with blocks. Requires a modded client to reach f
 
 ### netheritePickaxeInstantMineDeepslate
 Deepslate can be instant mined with netherite pickaxe and haste II.
+(Must also be installed on the client to work)
 * Type: `boolean`
 * Default value: `false`
 * Categories: `SURVIVAL`, `CHRONOS`
@@ -69,12 +70,6 @@ The player will sit down after 3 quick sneaks. Taken from plusls carped addons.
 * Type: `boolean`
 * Default value: `false`
 * Categories: `CHRONOS`
-
-### optimizedFallDamageRaycast
-Don't raycast for fall damage when the entity is moving upwards.
-* Type: `boolean`
-* Default value: `false`
-* Categories: `OPTIMIZATION`, `CHRONOS`
 
 ### totalScore
 Display total score on the sidebar. Taken from johan's carpet addons.
@@ -92,4 +87,5 @@ Bots don't appear on scoreboards and do not count in the total if they're not in
 
 This mod is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
 
-Parts of this project have been taken from [plusls-carpet-addition](https://github.com/plusls/plusls-carpet-addition), [lunaar-carpet-addons](https://github.com/Lunaar-SMP/lunaar-carpet-addons), [Johan-Carpet](https://github.com/JohanVonElectrum/Johan-Carpet), [litetech-additions](https://github.com/LiteTechMC/litetech-additions). The code taken from each project is stored under its respective folder in src/main/java. The code has been modified.
+Parts of this project have been taken from [plusls-carpet-addition](https://github.com/plusls/plusls-carpet-addition), [lunaar-carpet-addons](https://github.com/Lunaar-SMP/lunaar-carpet-addons), [Johan-Carpet](https://github.com/JohanVonElectrum/Johan-Carpet). The code has been modified. \
+In the past some code was taken from [litetech-additions](https://github.com/LiteTechMC/litetech-additions), but has been removed due to redundancy.

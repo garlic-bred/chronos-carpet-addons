@@ -1,4 +1,4 @@
-package johan.mixins;
+package chronos.mixins;
 
 import chronos.ChronosSettings;
 import net.minecraft.block.AbstractFireBlock;

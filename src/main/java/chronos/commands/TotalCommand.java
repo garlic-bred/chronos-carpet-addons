@@ -1,14 +1,13 @@
-package johan.commands;
+package chronos.commands;
 
 import chronos.ChronosSettings;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.command.argument.ScoreboardObjectiveArgumentType;
+import net.minecraft.scoreboard.ScoreboardEntry;
 import net.minecraft.scoreboard.ScoreboardObjective;
-import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import static net.minecraft.server.command.CommandManager.argument;
@@ -40,10 +39,10 @@ public class TotalCommand {
 
     public static int getTotal(ServerCommandSource source, ScoreboardObjective objective, boolean bots) {
         int i = 0;
-        for (ScoreboardPlayerScore score: source.getServer().getScoreboard().getAllPlayerScores(objective)) {
-            if (!bots && source.getServer().getScoreboard().getPlayerTeam(score.getPlayerName()) == null)
+        for (ScoreboardEntry score: source.getServer().getScoreboard().getScoreboardEntries(objective)) {
+            if (!bots && source.getServer().getScoreboard().getScoreHolderTeam(score.name().getString()) == null)
                 continue;
-            i += score.getScore();
+            i += score.value();
         }
         return i;
     }

@@ -1,18 +1,21 @@
 {
   "required": true,
   "package": "chronos.mixins",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractBlockMixin",
-    "ArmorStandMixin",
-    "BlocksMixin",
+    "AbstractFireBlockMixin",
+    "ArmorStandEntityMixin",
     "CrashReportNoopMixin",
-    "EntityMixin",
+    "EnderPearlEntityMixin",
+    "EndGatewayBlockEntityMixin",
     "NetherPortalMixin",
+    "PlayerEntityMixin",
     "RaidManagerMixin",
-    "ServerPlayerInteractionManagerMixin",
-    "ServerPlayNetworkHandlerMixin",
-    "carpet.EntityPlayerMPFakeMixin"
+    "ServerPlayerEntityMixin",
+    "ServerScoreboardMixin",
+    "TntEntityMixin",
+    "accessors.EntityAccessorMixin"
   ],
   "client": [
   ],

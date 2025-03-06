@@ -1,39 +1,33 @@
-package johan.mixins;
+package chronos.mixins;
 
 import carpet.CarpetServer;
 import chronos.ChronosSettings;
 import com.google.common.collect.Lists;
-import johan.commands.TotalCommand;
+import chronos.commands.TotalCommand;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.ScoreboardDisplayS2CPacket;
 import net.minecraft.network.packet.s2c.play.ScoreboardObjectiveUpdateS2CPacket;
-import net.minecraft.network.packet.s2c.play.ScoreboardPlayerUpdateS2CPacket;
+import net.minecraft.network.packet.s2c.play.ScoreboardScoreUpdateS2CPacket;
 import net.minecraft.scoreboard.*;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 @Mixin(ServerScoreboard.class)
 public abstract class ServerScoreboardMixin extends Scoreboard {
 
-    @Shadow @Final private Set<ScoreboardObjective> objectives;
-
     @Inject(method = "updateScore", at = @At("HEAD"), cancellable = true)
-    public void updateScore(ScoreboardPlayerScore score, CallbackInfo ci) {
-        if (ChronosSettings.scoreboardIgnoresBots && score.getScoreboard().getPlayerTeam(score.getPlayerName()) == null)
+    public void updateScore(ScoreHolder scoreHolder, ScoreboardObjective objective, ScoreboardScore score, CallbackInfo ci) {
+        if (ChronosSettings.scoreboardIgnoresBots && objective.getScoreboard().getScoreHolderTeam(scoreHolder.getDisplayName().getString()) == null)
             ci.cancel();
         else {
-            ScoreboardObjective objective = score.getObjective();
             if (objective != null && ChronosSettings.totalScore)
-                CarpetServer.minecraft_server.getPlayerManager().sendToAll(createPacket(objective));
+                CarpetServer.minecraft_server.getPlayerManager().sendToAll(createTotalPacket(objective));
         }
     }
 
@@ -42,7 +36,7 @@ public abstract class ServerScoreboardMixin extends Scoreboard {
         List<Packet<?>> list = Lists.newArrayList();
         list.add(new ScoreboardObjectiveUpdateS2CPacket(objective, 0));
         if (ChronosSettings.totalScore)
-            list.add(createPacket(objective));
+            list.add(createTotalPacket(objective));
 
         ScoreboardDisplaySlot[] var3 = ScoreboardDisplaySlot.values();
         int var4 = var3.length;
@@ -54,19 +48,29 @@ public abstract class ServerScoreboardMixin extends Scoreboard {
             }
         }
 
-        Iterator playerScoreIter = this.getAllPlayerScores(objective).iterator();
-
-        while(playerScoreIter.hasNext()) {
-            ScoreboardPlayerScore scoreboardPlayerScore = (ScoreboardPlayerScore) playerScoreIter.next();
-            if (!ChronosSettings.scoreboardIgnoresBots || scoreboardPlayerScore.getScoreboard().getPlayerTeam(scoreboardPlayerScore.getPlayerName()) != null)
-                list.add(new ScoreboardPlayerUpdateS2CPacket(ServerScoreboard.UpdateMode.CHANGE, scoreboardPlayerScore.getObjective().getName(), scoreboardPlayerScore.getPlayerName(), scoreboardPlayerScore.getScore()));
+        for (ScoreboardEntry entry : this.getScoreboardEntries(objective)) {
+            // only players on a team will be added to the scoreboard
+            if (!ChronosSettings.scoreboardIgnoresBots || this.getScoreHolderTeam(entry.name().getString()) != null)
+                list.add(new ScoreboardScoreUpdateS2CPacket(
+                        entry.owner(),
+                        objective.getName(),
+                        entry.value(),
+                        Optional.ofNullable(entry.display()),
+                        Optional.ofNullable(entry.numberFormatOverride())
+                ));
         }
 
         cir.setReturnValue(list);
     }
 
-    private ScoreboardPlayerUpdateS2CPacket createPacket(ScoreboardObjective objective) {
-        return new ScoreboardPlayerUpdateS2CPacket(ServerScoreboard.UpdateMode.CHANGE, objective.getName(), "Total", TotalCommand.getTotal(CarpetServer.minecraft_server.getCommandSource(), objective, !ChronosSettings.scoreboardIgnoresBots));
+    private ScoreboardScoreUpdateS2CPacket createTotalPacket(ScoreboardObjective objective) {
+        return new ScoreboardScoreUpdateS2CPacket(
+                "Total",
+                objective.getName(),
+                TotalCommand.getTotal(CarpetServer.minecraft_server.getCommandSource(), objective, !ChronosSettings.scoreboardIgnoresBots),
+                null,
+                null
+        );
     }
 
 }

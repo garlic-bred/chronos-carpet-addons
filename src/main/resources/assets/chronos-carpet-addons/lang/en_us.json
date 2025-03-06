@@ -1,14 +1,7 @@
 {
   "carpet.category.chronos": "chronos",
 
-  "carpet.rule.armorStandItemFromExplosion.desc": "Armor stand drops it's item if killed by an explosion.",
-
-  "carpet.rule.betterCarefulBreak.desc": "If you break a block while sneaking then the block gets put in your inventory.",
-  "carpet.rule.betterCarefulBreak.extra0": "Any blocks supported by that block that get broken instantly will also be put in your inventory.",
-
-  "carpet.rule.commandSidebar.desc": "Enables players without OP to change what objective is being displayed, and query a player's objectives.",
-  "carpet.rule.commandSidebar.extra.0": "Players with OP level 1 can also freeze or unfreeze an objective, which will stop scores for an objective from increasing.",
-  "carpet.rule.commandSidebar.extra.1": "Taken from litetech carpet addons.",
+  "carpet.rule.armorStandDropsItemFromExplosion.desc": "Armor stand drops it's item if killed by an explosion.",
 
   "carpet.rule.commandTotal.desc": "Enables /total command to know the total sum of a scoreboard.",
   "carpet.rule.commandTotal.extra.0": "Taken from johan's carpet addons.",
@@ -16,6 +9,10 @@
   "carpet.rule.creativeOneHitKill.desc": "Allows players in Creative mode to kill entities in one hit.",
   "carpet.rule.creativeOneHitKill.extra.0": "If the player is sneaking, other entities around the target get killed too.",
   "carpet.rule.creativeOneHitKill.extra.1": "Taken from lunaar carpet addons.",
+
+  "carpet.rule.disableEnderPearlTeleportation.desc": "Disables ender pearls teleporting the owner then they collide with a block.",
+
+  "carpet.rule.disarmTntWithShears.desc": "Makes a TNT entity never explode if you right click on it with shears.",
 
   "carpet.rule.disableNetherPortalCollisionCheck.desc": "Disable laggy nether portal collision checks introduced in 1.19.3.",
   "carpet.rule.disableNetherPortalCollisionCheck.extra0": "Large mobs may suffocate when going through portals if you enable this.",
@@ -26,19 +23,12 @@
   "carpet.rule.endGatewayCooldown.desc": "Toggle for end gateway cooldown.",
   "carpet.rule.endGatewayCooldown.extra.0": "Taken from johan's carpet addons.",
 
-  "carpet.rule.fakePlayerFallDamage.desc": "Toggle whether fake players take fall damage or not.",
-
-  "carpet.rule.maxBlockReachDistance.desc": "How far the player is allowed to interact with blocks.",
-  "carpet.rule.maxBlockReachDistance.extra0": "Requires a modded client to reach farther than what is allowed in vanilla.",
-
   "carpet.rule.netheritePickaxeInstantMineDeepslate.desc": "Deepslate can be instant mined with netherite pickaxe and haste II.",
 
   "carpet.rule.oldFlintAndSteelBehavior.desc": "Backports 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds.",
   "carpet.rule.oldFlintAndSteelBehavior.extra.0": "Taken from johan's carpet addons.",
 
-  "carpet.rule.optimizedFallDamageRaycast.desc": "Don't raycast for fall damage while the entity is moving upwards.",
-
-  "carpet.rule.playerSit.desc": "The player will sit down after 3 quick sneaks.",
+  "carpet.rule.playerSit.desc": "The player will sit down after 3 sneaks in quick succession.",
   "carpet.rule.playerSit.extra0": "Taken from plusls carped addons.",
 
   "carpet.rule.totalScore.desc": "Display total score on the sidebar.",

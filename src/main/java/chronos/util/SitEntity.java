@@ -1,4 +1,4 @@
-package plusls.util;
+package chronos.util;
 
 public interface SitEntity {
     boolean isSitEntity();
