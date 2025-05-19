@@ -35,6 +35,9 @@ public class ChronosSettings
     @Rule(categories = { SURVIVAL, CHRONOS })
     public static boolean netheritePickaxeInstantMineDeepslate = false;
 
+    @Rule(categories = { BUGFIX, CHRONOS })
+    public static boolean noClipCollisionFix = false;
+
     @Rule(categories = { CREATIVE, CHRONOS })
     public static boolean oldFlintAndSteelBehavior = false;
 

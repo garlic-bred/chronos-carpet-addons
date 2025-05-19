@@ -25,6 +25,9 @@
 
   "carpet.rule.netheritePickaxeInstantMineDeepslate.desc": "Deepslate can be instant mined with netherite pickaxe and haste II.",
 
+  "carpet.rule.noClipCollisionFix.desc": "Fixes noclip calculating all interactive block collisions when you exit noclip.",
+  "carpet.rule.noClipCollisionFix.extra.0": "For example, if you fly through a portal while in noclip, when you exit noclip you will no longer go through the portal.",
+
   "carpet.rule.oldFlintAndSteelBehavior.desc": "Backports 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds.",
   "carpet.rule.oldFlintAndSteelBehavior.extra.0": "Taken from johan's carpet addons.",
 

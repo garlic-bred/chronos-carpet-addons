@@ -1,6 +1,6 @@
 # Chronos Carpet Addons
 
-A carpet mod addon made for the [Chronos SMP](https://discord.gg/VvPucVAjUS). It mostly contains features from other unmaintained carpet addon mods that we felt were necessary for our server.
+A carpet mod addon made for the [Chronos SMP](https://discord.gg/VvPucVAjUS).
 
 ## Rules
 
@@ -58,6 +58,13 @@ Deepslate can be instant mined with netherite pickaxe and haste II.
 * Type: `boolean`
 * Default value: `false`
 * Categories: `SURVIVAL`, `CHRONOS`
+
+### noClipCollisionFix
+Fixes noclip calculating all interactive block collisions when you exit noclip.
+For example, if you fly through a portal while in noclip, when you exit noclip you will no longer go through the portal.
+* Type: `boolean`
+* Default value: `false`
+* Categories: `BUGFIX`, `CHRONOS`
 
 ### oldFlintAndSteelBehavior
 Backports 1.12 flint and steel behavior. Flint and steel can be used for updating observers / buds. Taken from johan's carpet addons.
