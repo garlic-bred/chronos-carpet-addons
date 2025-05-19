@@ -46,12 +46,6 @@ Toggle whether fake players take fall damage or not.
 * Default value: `true`
 * Categories: `CREATIVE`, `CHRONOS`
 
-### maxBlockReachDistance
-How far the player can interact with blocks. Requires a modded client to reach farther than what is allowed in vanilla.
-* Type: `double`
-* Default value: `6.0`
-* Categories: `CREATIVE`, `CHRONOS`
-
 ### netheritePickaxeInstantMineDeepslate
 Deepslate can be instant mined with netherite pickaxe and haste II.
 (Must also be installed on the client to work)
