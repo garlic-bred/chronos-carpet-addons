@@ -28,6 +28,12 @@ Disable laggy nether portal collision checks introduced in 1.19.3. Large mobs ma
 * Default value: `false`
 * Categories: `OPTIMIZATION`, `CHRONOS`
 
+### disarmTntWithShears
+Makes a TNT entity never explode if you right click on it with shears.
+* Type: `boolean`
+* Default value: `false`
+* Categories: `CREATIVE`, `CHRONOS`
+
 ### ignoreExistingRaids
 Allows raids to start within 96 blocks of existing raids. May be useful for designing raid farms.
 * Type: `boolean`
