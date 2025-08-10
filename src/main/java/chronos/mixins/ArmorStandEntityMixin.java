@@ -79,10 +79,10 @@ public abstract class ArmorStandEntityMixin extends LivingEntity implements SitE
     }
 
     @Inject(method = "readCustomDataFromNbt", at = @At(value = "RETURN"))
-    private void postReadCustomDataFromNbt(NbtCompound nbt, CallbackInfo ci) {
-        if (nbt.contains("SitEntity", NbtElement.BYTE_TYPE)) {
-            this.sitEntity = nbt.getBoolean("SitEntity");
+        private void postReadCustomDataFromNbt(NbtCompound nbt, CallbackInfo ci) {
+            if (nbt.contains("SitEntity")) {
+                this.sitEntity = nbt.getBoolean("SitEntity").orElse(false);
+            }
         }
-    }
 
 }

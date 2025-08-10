@@ -2,6 +2,8 @@
 
 A carpet mod addon made for the [Chronos SMP](https://discord.gg/VvPucVAjUS).
 
+Note; I ported this by myself, there might be something missing, feel free to correct it yourself, I mainly ported this to have the ability to insta mine deepslate.
+
 ## Rules
 
 ### armorStandDropItemFromExplosion

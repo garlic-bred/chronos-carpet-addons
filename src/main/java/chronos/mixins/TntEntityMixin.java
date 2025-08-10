@@ -78,7 +78,7 @@ public abstract class TntEntityMixin extends Entity {
 
     @Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
     public void readNbt(NbtCompound nbt, CallbackInfo ci) {
-        this.setDisarmed(nbt.getBoolean("disarmed"));
+        this.setDisarmed(nbt.getBoolean("disarmed").orElse(false));
     }
 
 }
