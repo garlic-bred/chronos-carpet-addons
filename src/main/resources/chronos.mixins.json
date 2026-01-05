@@ -9,7 +9,6 @@
     "CrashReportNoopMixin",
     "EnderPearlEntityMixin",
     "EndGatewayBlockEntityMixin",
-    "EntityMixin",
     "NetherPortalMixin",
     "PlayerEntityMixin",
     "RaidManagerMixin",

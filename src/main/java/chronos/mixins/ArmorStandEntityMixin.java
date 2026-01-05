@@ -7,10 +7,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -56,7 +56,7 @@ public abstract class ArmorStandEntityMixin extends LivingEntity implements SitE
     protected void removePassenger(Entity passenger) {
         if (this.isSitEntity()) {
             this.setPosition(this.getX(), this.getY() + 0.16, this.getZ());
-            this.kill((ServerWorld) passenger.getWorld());
+            this.kill((ServerWorld) passenger.getEntityWorld());
         }
         super.removePassenger(passenger);
     }
@@ -71,18 +71,16 @@ public abstract class ArmorStandEntityMixin extends LivingEntity implements SitE
         }
     }
 
-    @Inject(method = "writeCustomDataToNbt", at = @At(value = "RETURN"))
-    private void postWriteCustomDataToNbt(NbtCompound nbt, CallbackInfo ci) {
+    @Inject(method = "writeCustomData", at = @At(value = "RETURN"))
+    private void postWriteCustomDataToNbt(WriteView view, CallbackInfo ci) {
         if (this.sitEntity) {
-            nbt.putBoolean("SitEntity", true);
+            view.putBoolean("SitEntity", true);
         }
     }
 
-    @Inject(method = "readCustomDataFromNbt", at = @At(value = "RETURN"))
-    private void postReadCustomDataFromNbt(NbtCompound nbt, CallbackInfo ci) {
-        if (nbt.contains("SitEntity", NbtElement.BYTE_TYPE)) {
-            this.sitEntity = nbt.getBoolean("SitEntity");
-        }
+    @Inject(method = "readCustomData", at = @At(value = "RETURN"))
+    private void postReadCustomDataFromNbt(ReadView view, CallbackInfo ci) {
+        this.sitEntity = view.getBoolean("SitEntity", false);
     }
 
 }

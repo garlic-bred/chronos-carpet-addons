@@ -34,10 +34,10 @@ public abstract class PlayerEntityMixin implements EntityAccessorMixin {
     @Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;handleAttack(Lnet/minecraft/entity/Entity;)Z", shift = At.Shift.BY, by = -2), cancellable = true)
     public void creativeKill(Entity target, CallbackInfo ci) {
         if (ChronosSettings.creativeOneHitKill
-                && !this.accessorGetWorld().isClient // this is to prevent a bug with ender dragons
+                && !this.accessorGetWorld().isClient() // this is to prevent a bug with ender dragons
                 && this.abilities.creativeMode
                 && EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(target)) {
-            ServerWorld world = (ServerWorld) target.getWorld();
+            ServerWorld world = (ServerWorld) target.getEntityWorld();
             Consumer<Entity> instaKill = (target2) -> {
                 if (target2 instanceof EnderDragonPart) {
                     Arrays.stream(((EnderDragonPart) target2).owner.getBodyParts()).forEach(e -> e.kill(world));

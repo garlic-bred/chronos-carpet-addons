@@ -21,7 +21,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     private long lastSneakTime = 0;
 
     public ServerPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile profile) {
-        super(world, pos, yaw, profile);
+        super(world, profile);
     }
 
     @Override
@@ -40,7 +40,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
             if (this.isOnGround() && nowTime - lastSneakTime < 300) {
                 sneakTimes += 1;
                 if (sneakTimes == 3) {
-                    World world = super.getWorld();
+                    World world = super.getEntityWorld();
                     ArmorStandEntity armorStandEntity = new ArmorStandEntity(world, this.getX(), this.getY(), this.getZ());
                     ((SitEntity) armorStandEntity).setSitEntity(true);
                     armorStandEntity.setYaw(this.getRotationClient().y);
