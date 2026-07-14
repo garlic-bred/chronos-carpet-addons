@@ -18,6 +18,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -48,7 +49,7 @@ public abstract class TntEntityMixin extends Entity {
     }
 
     @Override
-    public InteractionResult interact(Player player, InteractionHand hand) {
+    public InteractionResult interact(Player player, InteractionHand hand, Vec3 location) {
 
         ItemStack heldItem = player.getItemInHand(hand);
         if (heldItem.is(Items.SHEARS) && ChronosSettings.disarmTntWithShears && !isDisarmed()) {
@@ -59,7 +60,7 @@ public abstract class TntEntityMixin extends Entity {
             return InteractionResult.PASS;
         }
 
-        return super.interact(player, hand);
+        return super.interact(player, hand, location);
 
     }
 
