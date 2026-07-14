@@ -2,32 +2,32 @@ package chronos.mixins;
 
 import chronos.ChronosSettings;
 import com.mojang.authlib.GameProfile;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerGamePacketListenerImpl;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import chronos.util.SitEntity;
-import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.packet.s2c.play.EntityTrackerUpdateS2CPacket;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(ServerPlayerEntity.class)
-public abstract class ServerPlayerEntityMixin extends PlayerEntity {
+@Mixin(ServerPlayer.class)
+public abstract class ServerPlayerEntityMixin extends Player {
     @Shadow
-    public ServerPlayNetworkHandler networkHandler;
+    public ServerGamePacketListenerImpl connection;
     private int sneakTimes = 0;
     private long lastSneakTime = 0;
 
-    public ServerPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile profile) {
+    public ServerPlayerEntityMixin(Level world, BlockPos pos, float yaw, GameProfile profile) {
         super(world, profile);
     }
 
     @Override
-    public void setSneaking(boolean sneaking) {
-        if (!ChronosSettings.playerSit || (sneaking && this.isSneaking())) {
-            super.setSneaking(sneaking);
+    public void setShiftKeyDown(boolean sneaking) {
+        if (!ChronosSettings.playerSit || (sneaking && this.isShiftKeyDown())) {
+            super.setShiftKeyDown(sneaking);
             return;
         }
 
@@ -36,16 +36,16 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
             if (nowTime - lastSneakTime < 300 && sneakTimes == 0) {
                 return;
             }
-            super.setSneaking(true);
-            if (this.isOnGround() && nowTime - lastSneakTime < 300) {
+            super.setShiftKeyDown(true);
+            if (this.onGround() && nowTime - lastSneakTime < 300) {
                 sneakTimes += 1;
                 if (sneakTimes == 3) {
-                    World world = super.getEntityWorld();
-                    ArmorStandEntity armorStandEntity = new ArmorStandEntity(world, this.getX(), this.getY(), this.getZ());
+                    Level world = super.level();
+                    ArmorStand armorStandEntity = new ArmorStand(world, this.getX(), this.getY(), this.getZ());
                     ((SitEntity) armorStandEntity).setSitEntity(true);
-                    armorStandEntity.setYaw(this.getRotationClient().y);
-                    world.spawnEntity(armorStandEntity);
-                    this.setSneaking(false);
+                    armorStandEntity.setYRot(this.getRotationVector().y);
+                    world.addFreshEntity(armorStandEntity);
+                    this.setShiftKeyDown(false);
                     this.startRiding(armorStandEntity);
                     sneakTimes = 0;
                 }
@@ -54,13 +54,13 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
             }
             lastSneakTime = nowTime;
         } else {
-            super.setSneaking(false);
+            super.setShiftKeyDown(false);
             // 同步潜行状态到客户端
             // 如果不同步的话客户端会认为仍在潜行，从而碰撞箱的高度会计算错误
             // Synchronize the sneak state with the client
             // If you don't synchronize, the client will think you're still sneaking, and the height of the collision box will be miscalculated.
-            if (sneakTimes == 0 && this.networkHandler != null) {
-                this.networkHandler.sendPacket(new EntityTrackerUpdateS2CPacket(this.getId(), this.getDataTracker().getChangedEntries()));
+            if (sneakTimes == 0 && this.connection != null) {
+                this.connection.send(new ClientboundSetEntityDataPacket(this.getId(), this.getEntityData().getNonDefaultValues()));
             }
         }
     }

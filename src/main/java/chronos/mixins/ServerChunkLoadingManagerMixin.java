@@ -1,22 +1,22 @@
 package chronos.mixins;
 
 import chronos.ChronosSettings;
-import net.minecraft.server.network.ChunkFilter;
-import net.minecraft.server.world.ServerChunkLoadingManager;
-import net.minecraft.util.math.ChunkPos;
+import net.minecraft.server.level.ChunkMap;
+import net.minecraft.server.level.ChunkTrackingView;
+import net.minecraft.world.level.ChunkPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(ServerChunkLoadingManager.class)
+@Mixin(ChunkMap.class)
 public class ServerChunkLoadingManagerMixin {
 
-    @Redirect(method = "sendToPlayers", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ChunkFilter;isWithinDistance(Lnet/minecraft/util/math/ChunkPos;)Z"))
-    public boolean alwaysWithinDistance(ChunkFilter instance, ChunkPos pos) {
+    @Redirect(method = "onChunkReadyToSend", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ChunkTrackingView;contains(Lnet/minecraft/world/level/ChunkPos;)Z"))
+    public boolean alwaysWithinDistance(ChunkTrackingView instance, ChunkPos pos) {
         if (ChronosSettings.squareViewDistance) {
             return true;
         } else {
-            return instance.isWithinDistance(pos);
+            return instance.contains(pos);
         }
     }
 

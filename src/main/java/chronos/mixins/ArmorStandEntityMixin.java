@@ -2,16 +2,16 @@ package chronos.mixins;
 
 import chronos.ChronosSettings;
 import chronos.util.SitEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.registry.tag.DamageTypeTags;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.storage.ReadView;
-import net.minecraft.storage.WriteView;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,24 +19,24 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(ArmorStandEntity.class)
+@Mixin(ArmorStand.class)
 public abstract class ArmorStandEntityMixin extends LivingEntity implements SitEntity {
 
     private boolean sitEntity = false;
 
     @Shadow
-    public abstract void kill(ServerWorld world);
+    public abstract void kill(ServerLevel world);
 
     @Shadow
-    protected abstract void onBreak(ServerWorld world, DamageSource source);
+    protected abstract void brokenByAnything(ServerLevel world, DamageSource source);
 
     @Shadow
-    protected abstract void breakAndDropItem(ServerWorld world, DamageSource damageSource);
+    protected abstract void brokenByPlayer(ServerLevel world, DamageSource damageSource);
 
     @Shadow
     protected abstract void setMarker(boolean marker);
 
-    protected ArmorStandEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+    protected ArmorStandEntityMixin(EntityType<? extends LivingEntity> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -55,32 +55,32 @@ public abstract class ArmorStandEntityMixin extends LivingEntity implements SitE
     @Override
     protected void removePassenger(Entity passenger) {
         if (this.isSitEntity()) {
-            this.setPosition(this.getX(), this.getY() + 0.16, this.getZ());
-            this.kill((ServerWorld) passenger.getEntityWorld());
+            this.setPos(this.getX(), this.getY() + 0.16, this.getZ());
+            this.kill((ServerLevel) passenger.level());
         }
         super.removePassenger(passenger);
     }
 
-    @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
-    public void dropItem(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (source.isIn(DamageTypeTags.IS_EXPLOSION) && ChronosSettings.armorStandDropsItemFromExplosion) {
-            this.breakAndDropItem(world, source);
-            this.onBreak(world, source);
+    @Inject(method = "hurtServer", at = @At("HEAD"), cancellable = true)
+    public void dropItem(ServerLevel world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (source.is(DamageTypeTags.IS_EXPLOSION) && ChronosSettings.armorStandDropsItemFromExplosion) {
+            this.brokenByPlayer(world, source);
+            this.brokenByAnything(world, source);
             this.kill(world);
             cir.setReturnValue(false);
         }
     }
 
-    @Inject(method = "writeCustomData", at = @At(value = "RETURN"))
-    private void postWriteCustomDataToNbt(WriteView view, CallbackInfo ci) {
+    @Inject(method = "addAdditionalSaveData", at = @At(value = "RETURN"))
+    private void postWriteCustomDataToNbt(ValueOutput view, CallbackInfo ci) {
         if (this.sitEntity) {
             view.putBoolean("SitEntity", true);
         }
     }
 
-    @Inject(method = "readCustomData", at = @At(value = "RETURN"))
-    private void postReadCustomDataFromNbt(ReadView view, CallbackInfo ci) {
-        this.sitEntity = view.getBoolean("SitEntity", false);
+    @Inject(method = "readAdditionalSaveData", at = @At(value = "RETURN"))
+    private void postReadCustomDataFromNbt(ValueInput view, CallbackInfo ci) {
+        this.sitEntity = view.getBooleanOr("SitEntity", false);
     }
 
 }

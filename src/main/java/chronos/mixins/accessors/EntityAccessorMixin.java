@@ -1,19 +1,19 @@
 package chronos.mixins.accessors;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.world.World;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(Entity.class)
 public interface EntityAccessorMixin {
-    @Accessor("dataTracker")
-    DataTracker accessorGetDataTracker();
+    @Accessor("entityData")
+    SynchedEntityData accessorGetDataTracker();
 
-    @Accessor("world")
-    World accessorGetWorld();
+    @Accessor("level")
+    Level accessorGetWorld();
 
     @Invoker("getX")
     double invokerGetX();
@@ -24,6 +24,6 @@ public interface EntityAccessorMixin {
     @Invoker("getZ")
     double invokerGetZ();
 
-    @Invoker("isSneaking")
+    @Invoker("isShiftKeyDown")
     boolean invokerIsSneaking();
 }

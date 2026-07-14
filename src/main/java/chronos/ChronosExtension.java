@@ -8,10 +8,10 @@ import com.google.gson.Gson;
 import com.mojang.brigadier.CommandDispatcher;
 import chronos.commands.TotalCommand;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.level.ServerPlayer;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -44,7 +44,7 @@ public class ChronosExtension implements CarpetExtension, ModInitializer {
     }
 
     @Override
-    public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher, final CommandRegistryAccess commandBuildContext)
+    public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext)
     {
 //        SideBarCommand.register(dispatcher);
         TotalCommand.register(dispatcher);
@@ -57,12 +57,12 @@ public class ChronosExtension implements CarpetExtension, ModInitializer {
     }
 
     @Override
-    public void onPlayerLoggedIn(ServerPlayerEntity player)
+    public void onPlayerLoggedIn(ServerPlayer player)
     {
     }
 
     @Override
-    public void onPlayerLoggedOut(ServerPlayerEntity player)
+    public void onPlayerLoggedOut(ServerPlayer player)
     {
     }
 
