@@ -74,8 +74,8 @@ public abstract class ServerScoreboardMixin extends Scoreboard {
                 "Total",
                 objective.getName(),
                 TotalCommand.getTotal(CarpetServer.minecraft_server.createCommandSourceStack(), objective, !ChronosSettings.scoreboardIgnoresBots),
-                null,
-                null
+                Optional.empty(),
+                Optional.empty()
         );
     }
 
